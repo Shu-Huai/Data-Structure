@@ -23,9 +23,6 @@ public class SequenceListTest {
 
     public void run() {
         char functionSelect = 0;
-        SequenceList<Integer> sequenceList = new SequenceList<>();
-        Integer elem;
-        int index;
         Scanner scanner = new Scanner(System.in);
         while (functionSelect != '0') {
             System.out.println("1. 生成顺序表；");
@@ -52,7 +49,7 @@ public class SequenceListTest {
                     for (int i = 0; i < input.length(); i++) {
                         if (input.charAt(i) != ' ') {
                             try {
-                                elem = Integer.parseInt(String.valueOf(input.charAt(i)));
+                                Integer elem = Integer.parseInt(String.valueOf(input.charAt(i)));
                                 sequenceList.appendElem(elem);
                             } catch (OverFlowException e) {
                                 System.out.println(e.getMessage());
@@ -68,9 +65,9 @@ public class SequenceListTest {
                 }
                 case '3' -> {
                     System.out.print("请输入元素的下标：");
-                    index = scanner.nextInt();
+                    Integer index = scanner.nextInt();
                     try {
-                        elem = sequenceList.getElem(index);
+                        Integer elem = sequenceList.getElem(index);
                         System.out.println("元素值为：" + elem);
                     } catch (RangeException e) {
                         System.out.println(e.getMessage());
@@ -78,9 +75,9 @@ public class SequenceListTest {
                 }
                 case '4' -> {
                     System.out.println("请输入元素的下标：");
-                    index = scanner.nextInt();
+                    Integer index = scanner.nextInt();
                     System.out.println("请输入元素值：");
-                    elem = scanner.nextInt();
+                    Integer elem = scanner.nextInt();
                     try {
                         sequenceList.setElem(elem, index);
                         System.out.println("成功");
@@ -90,7 +87,7 @@ public class SequenceListTest {
                 }
                 case '5' -> {
                     System.out.println("请输入元素的下标：");
-                    index = scanner.nextInt();
+                    Integer index = scanner.nextInt();
                     try {
                         sequenceList.deleteElem(index);
                         System.out.println("成功");
@@ -100,9 +97,9 @@ public class SequenceListTest {
                 }
                 case '6' -> {
                     System.out.print("请输入元素的下标：");
-                    index = scanner.nextInt();
+                    Integer index = scanner.nextInt();
                     System.out.print("请输入元素值：");
-                    elem = scanner.nextInt();
+                    Integer elem = scanner.nextInt();
                     try {
                         sequenceList.insertElem(elem, index);
                         System.out.println("成功");
@@ -112,8 +109,8 @@ public class SequenceListTest {
                 }
                 case '7' -> {
                     System.out.print("请输入元素值：");
-                    elem = scanner.nextInt();
-                    index = sequenceList.findElem(elem);
+                    Integer elem = scanner.nextInt();
+                    int index = sequenceList.findElem(elem);
                     if (index == -1) {
                         System.out.println("没有找到");
                     } else {
