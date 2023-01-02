@@ -14,9 +14,7 @@ public interface Stack<ElemType extends Comparable<? super ElemType>> {
 
     void push(ElemType elem) throws OverFlowException;
 
-    int getTop();
-
-    ElemType getTopElem() throws UnderFlowException;
+    ElemType getTop() throws UnderFlowException;
 
     ElemType pop() throws UnderFlowException;
 }

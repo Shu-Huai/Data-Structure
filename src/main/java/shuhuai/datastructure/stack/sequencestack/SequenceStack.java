@@ -17,18 +17,21 @@ public class SequenceStack<ElemType extends Comparable<? super ElemType>> implem
         this.capacity = capacity;
     }
 
+    @Override
     public int getLength() {
         return top + 1;
     }
-
+    @Override
     public boolean isEmpty() {
         return top == -1;
     }
 
+    @Override
     public void clear() {
         top = -1;
     }
 
+    @Override
     public void traverse() {
         for (int i = top; i >= 0; i--) {
             System.out.print(elems[i] + " ");
@@ -37,6 +40,7 @@ public class SequenceStack<ElemType extends Comparable<? super ElemType>> implem
         System.out.println("长度是：" + getLength());
     }
 
+    @Override
     public void push(ElemType elem) throws OverFlowException {
         if (top == capacity) {
             throw new OverFlowException("空间已满");
@@ -44,17 +48,15 @@ public class SequenceStack<ElemType extends Comparable<? super ElemType>> implem
         elems[++top] = elem;
     }
 
-    public int getTop() {
-        return top;
-    }
-
-    public ElemType getTopElem() throws UnderFlowException {
+    @Override
+    public ElemType getTop() throws UnderFlowException {
         if (isEmpty()) {
             throw new UnderFlowException("栈空");
         }
         return elems[top];
     }
 
+    @Override
     public ElemType pop() throws UnderFlowException {
         if (isEmpty()) {
             throw new UnderFlowException("栈空");

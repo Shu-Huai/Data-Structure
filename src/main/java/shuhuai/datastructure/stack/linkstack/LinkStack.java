@@ -49,12 +49,7 @@ public class LinkStack<ElemType extends Comparable<? super ElemType>> implements
     }
 
     @Override
-    public int getTop() {
-        return getLength() - 1;
-    }
-
-    @Override
-    public ElemType getTopElem() {
+    public ElemType getTop() {
         return top.elem;
     }
 
