@@ -1,6 +1,6 @@
 package shuhuai.datastructure.linearlist.linklist;
 
-public class LinkListNode<ElemType extends Comparable<? super ElemType>> {
+public class LinkListNode<ElemType> {
     protected ElemType elem;
     protected LinkListNode<ElemType> next;
 

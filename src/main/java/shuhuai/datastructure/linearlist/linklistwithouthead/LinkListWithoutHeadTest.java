@@ -1,4 +1,4 @@
-package shuhuai.datastructure.linearlist.LinkListWithoutHead;
+package shuhuai.datastructure.linearlist.linklistwithouthead;
 
 import shuhuai.datastructure.exceptions.RangeException;
 

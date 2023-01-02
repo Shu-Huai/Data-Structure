@@ -1,9 +1,9 @@
-package shuhuai.datastructure.linearlist.LinkListWithoutHead;
+package shuhuai.datastructure.linearlist.linklistwithouthead;
 
 import shuhuai.datastructure.exceptions.RangeException;
 
 public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> {
-    protected LinkListNode<ElemType> head;
+    protected LinkListWithoutHeadNode<ElemType> head;
     protected Integer length;
 
     public LinkListWithoutHead() {
@@ -12,32 +12,32 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
     }
 
     public LinkListWithoutHead(final ElemType[] elems) {
-        head = new LinkListNode<>(elems[0]);
-        LinkListNode<ElemType> p = head;
+        head = new LinkListWithoutHeadNode<>(elems[0]);
+        LinkListWithoutHeadNode<ElemType> p = head;
         for (int i = 1; i < elems.length; i++) {
-            p.next = new LinkListNode<>(elems[i]);
+            p.next = new LinkListWithoutHeadNode<>(elems[i]);
             p = p.next;
         }
         this.length = elems.length;
     }
 
     public LinkListWithoutHead(final LinkListWithoutHead<ElemType> linkList) {
-        head = new LinkListNode<>(linkList.head.elem);
-        LinkListNode<ElemType> p = head;
-        LinkListNode<ElemType> q = linkList.head;
+        head = new LinkListWithoutHeadNode<>(linkList.head.elem);
+        LinkListWithoutHeadNode<ElemType> p = head;
+        LinkListWithoutHeadNode<ElemType> q = linkList.head;
         while (q.next != null) {
-            p.next = new LinkListNode<>(q.next.elem);
+            p.next = new LinkListWithoutHeadNode<>(q.next.elem);
             p = p.next;
             q = q.next;
         }
         this.length = linkList.length;
     }
 
-    public LinkListNode<ElemType> getHead() {
+    public LinkListWithoutHeadNode<ElemType> getHead() {
         return head;
     }
 
-    public void setHead(final LinkListNode<ElemType> head) {
+    public void setHead(final LinkListWithoutHeadNode<ElemType> head) {
         this.head = head;
     }
 
@@ -64,7 +64,7 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
     }
 
     public void traverse() {
-        LinkListNode<ElemType> p = head;
+        LinkListWithoutHeadNode<ElemType> p = head;
         while (p != null) {
             System.out.print(p.elem);
             if (p.next != null) {
@@ -77,13 +77,13 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
 
     public void appendElem(final ElemType elem) {
         if (head == null) {
-            head = new LinkListNode<>(elem);
+            head = new LinkListWithoutHeadNode<>(elem);
         } else {
-            LinkListNode<ElemType> p = head;
+            LinkListWithoutHeadNode<ElemType> p = head;
             while (p.next != null) {
                 p = p.next;
             }
-            p.next = new LinkListNode<>(elem);
+            p.next = new LinkListWithoutHeadNode<>(elem);
         }
         length++;
     }
@@ -93,13 +93,13 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
             throw new RangeException("下标越界");
         }
         if (index == 0) {
-            head = new LinkListNode<>(elem, head);
+            head = new LinkListWithoutHeadNode<>(elem, head);
         } else {
-            LinkListNode<ElemType> p = head;
+            LinkListWithoutHeadNode<ElemType> p = head;
             for (int i = 0; i < index - 1; i++) {
                 p = p.next;
             }
-            p.next = new LinkListNode<>(elem, p.next);
+            p.next = new LinkListWithoutHeadNode<>(elem, p.next);
         }
         length++;
     }
@@ -111,7 +111,7 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
         if (index == 0) {
             head = head.next;
         } else {
-            LinkListNode<ElemType> p = head;
+            LinkListWithoutHeadNode<ElemType> p = head;
             for (int i = 0; i < index - 1; i++) {
                 p = p.next;
             }
@@ -120,11 +120,11 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
         length--;
     }
 
-    public LinkListNode<ElemType> getNode(final Integer index) throws RangeException {
+    public LinkListWithoutHeadNode<ElemType> getNode(final Integer index) throws RangeException {
         if (index < 0 || index >= length) {
             throw new RangeException("下标越界");
         }
-        LinkListNode<ElemType> p = head;
+        LinkListWithoutHeadNode<ElemType> p = head;
         for (int i = 0; i < index; i++) {
             p = p.next;
         }
@@ -146,7 +146,7 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
     }
 
     public Integer getIndex(final ElemType elem) {
-        LinkListNode<ElemType> p = head;
+        LinkListWithoutHeadNode<ElemType> p = head;
         for (int i = 0; i < length; i++) {
             if (p.elem.equals(elem)) {
                 return i;
@@ -157,10 +157,10 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
     }
 
     public void reverse() {
-        LinkListNode<ElemType> p = head;
-        LinkListNode<ElemType> q = null;
+        LinkListWithoutHeadNode<ElemType> p = head;
+        LinkListWithoutHeadNode<ElemType> q = null;
         while (p != null) {
-            LinkListNode<ElemType> r = p.next;
+            LinkListWithoutHeadNode<ElemType> r = p.next;
             p.next = q;
             q = p;
             p = r;
@@ -177,7 +177,7 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
             length = linkList.length;
             return;
         }
-        LinkListNode<ElemType> p = head;
+        LinkListWithoutHeadNode<ElemType> p = head;
         while (p.next != null) {
             p = p.next;
         }
