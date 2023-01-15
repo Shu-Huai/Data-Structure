@@ -4,18 +4,18 @@ import shuhuai.datastructure.exceptions.UnderFlowException;
 import shuhuai.datastructure.queue.Queue;
 
 public class LinkQueue<ElemType extends Comparable<? super ElemType>> implements Queue<ElemType> {
-    protected LinkQueueNode<ElemType> front;
-    protected LinkQueueNode<ElemType> rear;
+    protected Node<ElemType> front;
+    protected Node<ElemType> rear;
 
     public LinkQueue() {
-        front = new LinkQueueNode<>(null, null);
+        front = new Node<>(null, null);
         rear = front;
     }
 
     @Override
     public int getLength() {
         int count = 0;
-        for (LinkQueueNode<ElemType> p = front.next; p != null; p = p.next) {
+        for (Node<ElemType> p = front.next; p != null; p = p.next) {
             count++;
         }
         return count;
@@ -35,7 +35,7 @@ public class LinkQueue<ElemType extends Comparable<? super ElemType>> implements
     @Override
     public void traverse() {
         int count = 0;
-        for (LinkQueueNode<ElemType> p = front.next; p != null; p = p.next) {
+        for (Node<ElemType> p = front.next; p != null; p = p.next) {
             System.out.print(p.elem + " ");
             count++;
         }
@@ -48,7 +48,7 @@ public class LinkQueue<ElemType extends Comparable<? super ElemType>> implements
         if (isEmpty()) {
             throw new UnderFlowException("队空");
         }
-        LinkQueueNode<ElemType> p = front.next;
+        Node<ElemType> p = front.next;
         ElemType result = p.elem;
         front.next = p.next;
         if (rear == p) {
@@ -67,15 +67,15 @@ public class LinkQueue<ElemType extends Comparable<? super ElemType>> implements
 
     @Override
     public void enQueue(ElemType elem) {
-        rear.next = new LinkQueueNode<>(elem, null);
+        rear.next = new Node<>(elem, null);
         rear = rear.next;
     }
 
     public LinkQueue(LinkQueue<ElemType> linkQueue) {
-        front = new LinkQueueNode<>(null, null);
-        LinkQueueNode<ElemType> q = front;
-        for (LinkQueueNode<ElemType> p = linkQueue.front.next; p != null; p = p.next) {
-            q.next = new LinkQueueNode<>(p.elem, null);
+        front = new Node<>(null, null);
+        Node<ElemType> q = front;
+        for (Node<ElemType> p = linkQueue.front.next; p != null; p = p.next) {
+            q.next = new Node<>(p.elem, null);
             q = q.next;
         }
         rear = q;
