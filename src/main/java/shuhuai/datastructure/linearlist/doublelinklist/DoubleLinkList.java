@@ -1,9 +1,7 @@
 package shuhuai.datastructure.linearlist.doublelinklist;
 
-import shuhuai.datastructure.exceptions.RangeException;
-
 public class DoubleLinkList<ElemType extends Comparable<? super ElemType>> {
-    protected DoubleLinkListNode<ElemType> head;
+    protected Node<ElemType> head;
     protected int size;
 
     public DoubleLinkList() {
@@ -11,7 +9,7 @@ public class DoubleLinkList<ElemType extends Comparable<? super ElemType>> {
         this.size = 0;
     }
 
-    public int size() {
+    public int getSize() {
         return this.size;
     }
 
@@ -20,11 +18,11 @@ public class DoubleLinkList<ElemType extends Comparable<? super ElemType>> {
     }
 
     public void add(ElemType elem) {
-        DoubleLinkListNode<ElemType> node = new DoubleLinkListNode<ElemType>(elem);
+        Node<ElemType> node = new Node<ElemType>(elem);
         if (this.head == null) {
             this.head = node;
         } else {
-            DoubleLinkListNode<ElemType> cur = this.head;
+            Node<ElemType> cur = this.head;
             while (cur.next != null) {
                 cur = cur.next;
             }
@@ -39,16 +37,16 @@ public class DoubleLinkList<ElemType extends Comparable<? super ElemType>> {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
         if (index == 0) {
-            DoubleLinkListNode<ElemType> node = new DoubleLinkListNode<ElemType>(elem);
+            Node<ElemType> node = new Node<ElemType>(elem);
             node.next = this.head;
             this.head.prev = node;
             this.head = node;
         } else {
-            DoubleLinkListNode<ElemType> cur = this.head;
+            Node<ElemType> cur = this.head;
             for (int i = 0; i < index - 1; i++) {
                 cur = cur.next;
             }
-            DoubleLinkListNode<ElemType> node = new DoubleLinkListNode<ElemType>(elem);
+            Node<ElemType> node = new Node<ElemType>(elem);
             node.next = cur.next;
             node.prev = cur;
             cur.next.prev = node;

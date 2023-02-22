@@ -1,20 +1,20 @@
 package shuhuai.datastructure.linearlist.linklist;
 
-public class LinkListNode<ElemType> {
+public class Node<ElemType> {
     protected ElemType elem;
-    protected LinkListNode<ElemType> next;
+    protected Node<ElemType> next;
 
-    public LinkListNode() {
+    public Node() {
         this.elem = null;
         this.next = null;
     }
 
-    public LinkListNode(ElemType elem) {
+    public Node(ElemType elem) {
         this.elem = elem;
         this.next = null;
     }
 
-    public LinkListNode(ElemType elem, LinkListNode<ElemType> next) {
+    public Node(ElemType elem, Node<ElemType> next) {
         this.elem = elem;
         this.next = next;
     }

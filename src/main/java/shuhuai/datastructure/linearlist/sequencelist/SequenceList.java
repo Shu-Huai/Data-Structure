@@ -44,19 +44,19 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> {
         this.elems = elems;
     }
 
-    public Integer getLength() {
+    public int getLength() {
         return length;
     }
 
-    public void setLength(Integer length) {
+    public void setLength(int length) {
         this.length = length;
     }
 
-    public Integer getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(Integer capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
@@ -96,7 +96,7 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> {
         elems[length++] = elem;
     }
 
-    public void insertElem(ElemType elem, Integer index) throws OverFlowException, RangeException {
+    public void insertElem(ElemType elem, int index) throws OverFlowException, RangeException {
         if (Objects.equals(length, capacity)) {
             throw new OverFlowException("空间已满");
         }
@@ -108,7 +108,7 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> {
         length++;
     }
 
-    public void deleteElem(Integer index) throws RangeException {
+    public void deleteElem(int index) throws RangeException {
         if (index < 0 || index >= length) {
             throw new RangeException("下标越界");
         }
@@ -116,14 +116,14 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> {
         length--;
     }
 
-    public void setElem(ElemType elem, Integer index) throws RangeException {
+    public void setElem(ElemType elem, int index) throws RangeException {
         if (index < 0 || index >= length) {
             throw new RangeException("下标越界");
         }
         elems[index] = elem;
     }
 
-    public ElemType getElem(Integer index) throws RangeException {
+    public ElemType getElem(int index) throws RangeException {
         if (index < 0 || index >= length) {
             throw new RangeException("下标越界");
         }
@@ -139,7 +139,7 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> {
         return -1;
     }
 
-    public void swap(Integer firstIndex, Integer secondIndex) throws RangeException {
+    public void swap(int firstIndex, int secondIndex) throws RangeException {
         if (firstIndex < 0 || firstIndex >= length || secondIndex < 0 || secondIndex >= length) {
             throw new RangeException("下标越界");
         }

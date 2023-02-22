@@ -1,23 +1,23 @@
 package shuhuai.datastructure.linearlist.doublelinklist;
 
-public class DoubleLinkListNode<ElemType> {
+public class Node<ElemType> {
     protected ElemType elem;
-    protected DoubleLinkListNode<ElemType> prev;
-    protected DoubleLinkListNode<ElemType> next;
+    protected Node<ElemType> prev;
+    protected Node<ElemType> next;
 
-    public DoubleLinkListNode() {
+    public Node() {
         this.elem = null;
         this.prev = null;
         this.next = null;
     }
 
-    public DoubleLinkListNode(ElemType elem) {
+    public Node(ElemType elem) {
         this.elem = elem;
         this.prev = null;
         this.next = null;
     }
 
-    public DoubleLinkListNode(ElemType elem, DoubleLinkListNode<ElemType> prev, DoubleLinkListNode<ElemType> next) {
+    public Node(ElemType elem, Node<ElemType> prev, Node<ElemType> next) {
         this.elem = elem;
         this.prev = prev;
         this.next = next;
