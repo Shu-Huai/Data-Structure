@@ -1,10 +1,11 @@
 package shuhuai.datastructure.linearlist.linklistwithouthead;
 
 import shuhuai.datastructure.exceptions.RangeException;
+import shuhuai.datastructure.linearlist.LinearList;
 
-public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> {
+public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> implements LinearList<ElemType> {
     protected LinkListWithoutHeadNode<ElemType> head;
-    protected Integer length;
+    protected int length;
 
     public LinkListWithoutHead() {
         head = null;
@@ -41,28 +42,33 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
         this.head = head;
     }
 
-    public Integer getLength() {
+    @Override
+    public int getLength() {
         return length;
     }
 
-    public void setLength(final Integer length) {
+    public void setLength(final int length) {
         this.length = length;
     }
 
+    @Override
     public void clear() {
         head = null;
         length = 0;
     }
 
-    public Boolean isEmpty() {
+    @Override
+    public boolean isEmpty() {
         return length == 0;
     }
 
+    @Override
     public void display() {
         traverse();
         System.out.println("长度是: " + length);
     }
 
+    @Override
     public void traverse() {
         LinkListWithoutHeadNode<ElemType> p = head;
         while (p != null) {
@@ -75,6 +81,7 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
         System.out.println();
     }
 
+    @Override
     public void appendElem(final ElemType elem) {
         if (head == null) {
             head = new LinkListWithoutHeadNode<>(elem);
@@ -88,7 +95,8 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
         length++;
     }
 
-    public void insertElem(final ElemType elem, final Integer index) throws RangeException {
+    @Override
+    public void insertElem(final ElemType elem, final int index) throws RangeException {
         if (index < 0 || index > length) {
             throw new RangeException("下标越界");
         }
@@ -104,7 +112,8 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
         length++;
     }
 
-    public void deleteElem(final Integer index) throws RangeException {
+    @Override
+    public void deleteElem(final int index) throws RangeException {
         if (index < 0 || index >= length) {
             throw new RangeException("下标越界");
         }
@@ -120,7 +129,7 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
         length--;
     }
 
-    public LinkListWithoutHeadNode<ElemType> getNode(final Integer index) throws RangeException {
+    public LinkListWithoutHeadNode<ElemType> getNode(final int index) throws RangeException {
         if (index < 0 || index >= length) {
             throw new RangeException("下标越界");
         }
@@ -131,21 +140,24 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
         return p;
     }
 
-    public ElemType getElem(final Integer index) throws RangeException {
+    @Override
+    public ElemType getElem(final int index) throws RangeException {
         if (index < 0 || index >= length) {
             throw new RangeException("下标越界");
         }
         return getNode(index).elem;
     }
 
-    public void setElem(final ElemType elem, final Integer index) throws RangeException {
+    @Override
+    public void setElem(final ElemType elem, final int index) throws RangeException {
         if (index < 0 || index >= length) {
             throw new RangeException("下标越界");
         }
         getNode(index).elem = elem;
     }
 
-    public Integer getIndex(final ElemType elem) {
+    @Override
+    public int findElem(final ElemType elem) {
         LinkListWithoutHeadNode<ElemType> p = head;
         for (int i = 0; i < length; i++) {
             if (p.elem.equals(elem)) {

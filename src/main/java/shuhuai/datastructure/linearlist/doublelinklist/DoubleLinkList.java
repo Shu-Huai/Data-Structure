@@ -1,5 +1,7 @@
 package shuhuai.datastructure.linearlist.doublelinklist;
 
+import shuhuai.datastructure.linearlist.LinearList;
+
 public class DoubleLinkList<ElemType extends Comparable<? super ElemType>> {
     protected Node<ElemType> head;
     protected int size;
@@ -54,6 +56,4 @@ public class DoubleLinkList<ElemType extends Comparable<? super ElemType>> {
         }
         this.size++;
     }
-
-
 }
