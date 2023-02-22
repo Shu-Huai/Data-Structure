@@ -1,10 +1,11 @@
 package shuhuai.datastructure.linearlist.linklist;
 
 import shuhuai.datastructure.exceptions.RangeException;
+import shuhuai.datastructure.linearlist.LinearList;
 
-public class LinkList<ElemType extends Comparable<? super ElemType>> {
+public class LinkList<ElemType extends Comparable<? super ElemType>> implements LinearList<ElemType> {
     protected Node<ElemType> head;
-    protected Integer length;
+    protected int length;
 
     public LinkList() {
         head = new Node<>();
@@ -41,29 +42,34 @@ public class LinkList<ElemType extends Comparable<? super ElemType>> {
         this.head = head;
     }
 
-    public Integer getLength() {
+    @Override
+    public int getLength() {
         return length;
     }
 
-    public void setLength(final Integer length) {
+    public void setLength(final int length) {
         this.length = length;
     }
 
+    @Override
     public void clear() {
         head = new Node<>();
         length = 0;
     }
 
-    public Boolean isEmpty() {
+    @Override
+    public boolean isEmpty() {
         return length == 0;
     }
 
+    @Override
     public void display() {
         System.out.print("头 -> ");
         traverse();
         System.out.println("长度是: " + length);
     }
 
+    @Override
     public void traverse() {
         Node<ElemType> p = head.next;
         while (p != null) {
@@ -76,7 +82,7 @@ public class LinkList<ElemType extends Comparable<? super ElemType>> {
         System.out.println();
     }
 
-    public Node<ElemType> getNode(final Integer index) throws RangeException {
+    public Node<ElemType> getNode(final int index) throws RangeException {
         if (index < -1 || index >= length) {
             throw new RangeException("下标越界");
         }
@@ -87,7 +93,7 @@ public class LinkList<ElemType extends Comparable<? super ElemType>> {
         return p;
     }
 
-    public void setNode(final Integer index, final Node<ElemType> linkListNode) throws RangeException {
+    public void setNode(final int index, final Node<ElemType> linkListNode) throws RangeException {
         if (index < 0 || index >= length) {
             throw new RangeException("下标越界");
         }
@@ -96,6 +102,7 @@ public class LinkList<ElemType extends Comparable<? super ElemType>> {
         p.next = linkListNode;
     }
 
+    @Override
     public void appendElem(final ElemType elem) {
         Node<ElemType> p = head;
         while (p.next != null) {
@@ -105,7 +112,8 @@ public class LinkList<ElemType extends Comparable<? super ElemType>> {
         length++;
     }
 
-    public void insertElem(final ElemType elem, final Integer index) throws RangeException {
+    @Override
+    public void insertElem(final ElemType elem, final int index) throws RangeException {
         if (index < 0 || index > length) {
             throw new RangeException("下标越界");
         }
@@ -114,7 +122,8 @@ public class LinkList<ElemType extends Comparable<? super ElemType>> {
         length++;
     }
 
-    public void deleteElem(final Integer index) throws RangeException {
+    @Override
+    public void deleteElem(final int index) throws RangeException {
         if (index < 0 || index >= length) {
             throw new RangeException("下标越界");
         }
@@ -123,15 +132,18 @@ public class LinkList<ElemType extends Comparable<? super ElemType>> {
         length--;
     }
 
-    public ElemType getElem(final Integer index) throws RangeException {
+    @Override
+    public ElemType getElem(final int index) throws RangeException {
         return getNode(index).elem;
     }
 
-    public void setElem(final ElemType elem, final Integer index) throws RangeException {
+    @Override
+    public void setElem(final ElemType elem, final int index) throws RangeException {
         getNode(index).elem = elem;
     }
 
-    public Integer getIndex(final ElemType elem) {
+    @Override
+    public int findElem(final ElemType elem) {
         Node<ElemType> p = head.next;
         for (int i = 0; i < length; i++) {
             if (p.elem.equals(elem)) {
@@ -142,7 +154,7 @@ public class LinkList<ElemType extends Comparable<? super ElemType>> {
         return -1;
     }
 
-    public void swapElem(final Integer indexA, final Integer indexB) throws RangeException {
+    public void swapElem(final int indexA, final int indexB) throws RangeException {
         if (indexA < 0 || indexA >= length || indexB < 0 || indexB >= length) {
             throw new RangeException("下标越界");
         }

@@ -2,10 +2,12 @@ package shuhuai.datastructure.linearlist.sequencelist;
 
 import shuhuai.datastructure.exceptions.OverFlowException;
 import shuhuai.datastructure.exceptions.RangeException;
+import shuhuai.datastructure.linearlist.LinearList;
+import shuhuai.datastructure.linearlist.linklist.Node;
 
 import java.util.Objects;
 
-public class SequenceList<ElemType extends Comparable<? super ElemType>> {
+public class SequenceList<ElemType extends Comparable<? super ElemType>> implements LinearList<ElemType> {
     protected ElemType[] elems;
     protected Integer length;
     protected Integer capacity;
@@ -60,14 +62,17 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> {
         this.capacity = capacity;
     }
 
+    @Override
     public void clear() {
         length = 0;
     }
 
-    public Boolean isEmpty() {
+    @Override
+    public boolean isEmpty() {
         return length == 0;
     }
 
+    @Override
     public void traverse() {
         for (int i = 0; i < length; i++) {
             System.out.print(elems[i]);
@@ -78,6 +83,7 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> {
         System.out.println();
     }
 
+    @Override
     public void display() {
         for (int i = 0; i < length; i++) {
             System.out.print(elems[i]);
@@ -89,6 +95,7 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> {
         System.out.println("长度是：" + length);
     }
 
+    @Override
     public void appendElem(ElemType elem) throws OverFlowException {
         if (Objects.equals(length, capacity)) {
             throw new OverFlowException("空间已满");
@@ -96,6 +103,7 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> {
         elems[length++] = elem;
     }
 
+    @Override
     public void insertElem(ElemType elem, int index) throws OverFlowException, RangeException {
         if (Objects.equals(length, capacity)) {
             throw new OverFlowException("空间已满");
@@ -108,6 +116,7 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> {
         length++;
     }
 
+    @Override
     public void deleteElem(int index) throws RangeException {
         if (index < 0 || index >= length) {
             throw new RangeException("下标越界");
@@ -116,6 +125,7 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> {
         length--;
     }
 
+    @Override
     public void setElem(ElemType elem, int index) throws RangeException {
         if (index < 0 || index >= length) {
             throw new RangeException("下标越界");
@@ -123,6 +133,7 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> {
         elems[index] = elem;
     }
 
+    @Override
     public ElemType getElem(int index) throws RangeException {
         if (index < 0 || index >= length) {
             throw new RangeException("下标越界");
@@ -130,6 +141,8 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> {
         return elems[index];
     }
 
+
+    @Override
     public int findElem(ElemType elem) {
         for (int i = 0; i < length; i++) {
             if (Objects.equals(elems[i], elem)) {
