@@ -1,6 +1,6 @@
 package shuhuai.datastructure.exceptions;
 
-public class OverFlowException extends Exception {
+public class OverFlowException extends BaseException {
     public OverFlowException() {
         super();
     }

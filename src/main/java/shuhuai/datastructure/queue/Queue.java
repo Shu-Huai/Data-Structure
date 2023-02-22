@@ -3,7 +3,7 @@ package shuhuai.datastructure.queue;
 import shuhuai.datastructure.exceptions.OverFlowException;
 import shuhuai.datastructure.exceptions.UnderFlowException;
 
-public interface Queue<ElemType extends Comparable<? super ElemType>> {
+public interface Queue<ElemType> {
     int getLength();
 
     boolean isEmpty();

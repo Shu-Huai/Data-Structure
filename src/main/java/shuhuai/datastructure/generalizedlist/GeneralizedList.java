@@ -2,6 +2,8 @@ package shuhuai.datastructure.generalizedlist;
 
 import shuhuai.datastructure.exceptions.RangeException;
 
+import java.util.function.Function;
+
 public class GeneralizedList<ElemType> {
     protected Node<ElemType> head;
 
@@ -117,25 +119,32 @@ public class GeneralizedList<ElemType> {
         head = copy(generalizedList.head);
     }
 
-    public void show() {
-        show(head);
+    public void traverse() {
+        traverse(head, value -> {
+            System.out.print(value);
+            return null;
+        });
     }
 
-    public void show(Node<ElemType> head) {
+    public void traverse(Function<String, Void> visit) {
+        traverse(head, visit);
+    }
+
+    public void traverse(Node<ElemType> head, Function<String, Void> visit) {
         boolean first = true;
-        System.out.print("(");
+        visit.apply("(");
         for (Node<ElemType> p = head.next; p != null; p = p.next) {
             if (first) {
                 first = false;
             } else {
-                System.out.print(", ");
+                visit.apply(", ");
             }
             if (p.tag == NodeType.Data) {
-                System.out.print(p.elem);
+                visit.apply((String) p.elem);
             } else {
-                show(p.next);
+                traverse(p.next, visit);
             }
         }
-        System.out.print(")");
+        visit.apply(")\n");
     }
 }

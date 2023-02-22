@@ -3,7 +3,7 @@ package shuhuai.datastructure.queue.linkqueue;
 import shuhuai.datastructure.exceptions.UnderFlowException;
 import shuhuai.datastructure.queue.Queue;
 
-public class LinkQueue<ElemType extends Comparable<? super ElemType>> implements Queue<ElemType> {
+public class LinkQueue<ElemType> implements Queue<ElemType> {
     protected Node<ElemType> front;
     protected Node<ElemType> rear;
 

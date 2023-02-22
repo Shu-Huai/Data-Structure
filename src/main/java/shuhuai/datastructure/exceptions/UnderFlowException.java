@@ -1,6 +1,6 @@
 package shuhuai.datastructure.exceptions;
 
-public class UnderFlowException extends Exception {
+public class UnderFlowException extends BaseException {
     public UnderFlowException() {
         super();
     }

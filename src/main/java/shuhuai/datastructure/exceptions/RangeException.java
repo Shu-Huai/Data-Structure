@@ -1,6 +1,6 @@
 package shuhuai.datastructure.exceptions;
 
-public class RangeException extends Exception {
+public class RangeException extends BaseException {
     public RangeException() {
         super();
     }

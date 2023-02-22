@@ -1,6 +1,6 @@
 package shuhuai.datastructure.exceptions;
 
-public class NotExistException extends Exception {
+public class NotExistException extends BaseException {
     public NotExistException() {
         super();
     }
