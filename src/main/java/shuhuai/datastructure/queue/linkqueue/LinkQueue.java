@@ -13,6 +13,16 @@ public class LinkQueue<ElemType> implements Queue<ElemType> {
         rear = front;
     }
 
+    public LinkQueue(LinkQueue<ElemType> linkQueue) {
+        front = new Node<>(null, null);
+        Node<ElemType> q = front;
+        for (Node<ElemType> p = linkQueue.front.next; p != null; p = p.next) {
+            q.next = new Node<>(p.elem, null);
+            q = q.next;
+        }
+        rear = q;
+    }
+
     @Override
     public int getLength() {
         int count = 0;
@@ -70,15 +80,5 @@ public class LinkQueue<ElemType> implements Queue<ElemType> {
     public void enQueue(ElemType elem) {
         rear.next = new Node<>(elem, null);
         rear = rear.next;
-    }
-
-    public LinkQueue(LinkQueue<ElemType> linkQueue) {
-        front = new Node<>(null, null);
-        Node<ElemType> q = front;
-        for (Node<ElemType> p = linkQueue.front.next; p != null; p = p.next) {
-            q.next = new Node<>(p.elem, null);
-            q = q.next;
-        }
-        rear = q;
     }
 }

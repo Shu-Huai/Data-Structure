@@ -17,6 +17,10 @@ public class GeneralizedList<ElemType> {
         this.head = head;
     }
 
+    public GeneralizedList(GeneralizedList<ElemType> generalizedList) {
+        head = copy(generalizedList.head);
+    }
+
     public void clear(Node<ElemType> head) {
         head.refCount--;
         if (head.refCount == 0) {
@@ -112,10 +116,6 @@ public class GeneralizedList<ElemType> {
             }
         }
         return head;
-    }
-
-    public GeneralizedList(GeneralizedList<ElemType> generalizedList) {
-        head = copy(generalizedList.head);
     }
 
     public void traverse() {

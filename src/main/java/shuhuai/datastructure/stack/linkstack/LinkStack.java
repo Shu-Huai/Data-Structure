@@ -10,6 +10,22 @@ public class LinkStack<ElemType extends Comparable<? super ElemType>> implements
         top = null;
     }
 
+    public LinkStack(LinkStack<ElemType> linkStack) {
+        Node<ElemType> p = linkStack.top;
+        if (p == null) {
+            top = null;
+            return;
+        }
+        top = new Node<>(p.elem, null);
+        Node<ElemType> q = top;
+        p = p.next;
+        while (p != null) {
+            q.next = new Node<>(p.elem, null);
+            q = q.next;
+            p = p.next;
+        }
+    }
+
     @Override
     public int getLength() {
         int count = 0;
@@ -59,21 +75,5 @@ public class LinkStack<ElemType extends Comparable<? super ElemType>> implements
         ElemType result = top.elem;
         top = top.next;
         return result;
-    }
-
-    public LinkStack(LinkStack<ElemType> linkStack) {
-        Node<ElemType> p = linkStack.top;
-        if (p == null) {
-            top = null;
-            return;
-        }
-        top = new Node<>(p.elem, null);
-        Node<ElemType> q = top;
-        p = p.next;
-        while (p != null) {
-            q.next = new Node<>(p.elem, null);
-            q = q.next;
-            p = p.next;
-        }
     }
 }

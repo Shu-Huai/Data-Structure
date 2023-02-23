@@ -6,7 +6,7 @@ import shuhuai.datastructure.linearlist.LinearList;
 
 import java.util.Objects;
 
-@SuppressWarnings({"unused","unchecked"})
+@SuppressWarnings({"unused", "unchecked"})
 public class SequenceList<ElemType extends Comparable<? super ElemType>> implements LinearList<ElemType> {
     protected ElemType[] elems;
     protected Integer length;

@@ -4,7 +4,7 @@ import shuhuai.datastructure.exceptions.OverFlowException;
 import shuhuai.datastructure.exceptions.RangeException;
 import shuhuai.datastructure.matrix.Matrix;
 
-@SuppressWarnings({"unused","unchecked"})
+@SuppressWarnings({"unused", "unchecked"})
 public class CrossListMatrix<ElemType> implements Matrix<ElemType> {
     protected Node<ElemType>[] rowHead;
     protected Node<ElemType>[] colHead;

@@ -8,6 +8,7 @@ import shuhuai.datastructure.queue.linkqueue.LinkQueue;
 
 import java.util.function.Function;
 
+@SuppressWarnings({"unused"})
 public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
     protected Node<ElemType> root;
 
@@ -34,11 +35,15 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
     }
 
     public boolean isEmpty() {
-        return root == null;
+        return isNodeEmpty(root);
+    }
+
+    public boolean isNodeEmpty(Node<ElemType> node) {
+        return node == null;
     }
 
     public Node<ElemType> copy(Node<ElemType> node) {
-        if (node == null) {
+        if (isNodeEmpty(node)) {
             return null;
         }
         Node<ElemType> result = new Node<>(node.elem);
@@ -48,38 +53,39 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
     }
 
     public ElemType getElem(Node<ElemType> node) throws NotExistException {
-        if (node == null) {
+        if (isNodeEmpty(node)) {
             throw new NotExistException("结点不存在");
         }
         return node.elem;
     }
 
     public void setElem(Node<ElemType> node, ElemType elem) throws NotExistException {
-        if (node == null) {
+        if (isNodeEmpty(node)) {
             throw new NotExistException("结点不存在");
         }
         node.elem = elem;
     }
 
-    public Node<ElemType> getNode(ElemType elem) {
-        return getNode(root, elem);
+    public Node<ElemType> find(ElemType elem) {
+        return find(root, elem);
     }
 
-    public Node<ElemType> getNode(Node<ElemType> root, ElemType elem) {
-        if (root == null) {
+    public Node<ElemType> find(Node<ElemType> root, ElemType elem) {
+        if (isNodeEmpty(root)) {
             return null;
         }
         if (root.elem == elem) {
             return root;
         }
-        Node<ElemType> p = getNode(root.leftChild, elem);
-        if (p != null) {
+        Node<ElemType> p = find(root.leftChild, elem);
+        if (!isNodeEmpty(p)) {
             return p;
         }
-        p = getNode(root.rightChild, elem);
+        p = find(root.rightChild, elem);
         return p;
     }
 
+    @Override
     public void preOrderTraverse() {
         preOrderTraverse(value -> {
             System.out.print(value);
@@ -88,20 +94,22 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
         System.out.print("\n");
     }
 
-    public void preOrderTraverse(Function<String, Void> visit) {
-        preOrderTraverse(root, visit);
-        visit.apply("\n");
+    @Override
+    public void preOrderTraverse(Function<String, Void> output) {
+        preOrderTraverse(root, output);
+        output.apply("\n");
     }
 
-    public void preOrderTraverse(Node<ElemType> root, Function<String, Void> visit) {
-        if (root == null) {
+    public void preOrderTraverse(Node<ElemType> root, Function<String, Void> output) {
+        if (isNodeEmpty(root)) {
             return;
         }
-        visit.apply(root.elem + " ");
-        preOrderTraverse(root.leftChild, visit);
-        preOrderTraverse(root.rightChild, visit);
+        output.apply(root.elem + " ");
+        preOrderTraverse(root.leftChild, output);
+        preOrderTraverse(root.rightChild, output);
     }
 
+    @Override
     public void inOrderTraverse() {
         inOrderTraverse(value -> {
             System.out.print(value);
@@ -110,20 +118,22 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
         System.out.print("\n");
     }
 
-    public void inOrderTraverse(Function<String, Void> visit) {
-        inOrderTraverse(root, visit);
-        visit.apply("\n");
+    @Override
+    public void inOrderTraverse(Function<String, Void> output) {
+        inOrderTraverse(root, output);
+        output.apply("\n");
     }
 
-    public void inOrderTraverse(Node<ElemType> root, Function<String, Void> visit) {
-        if (root == null) {
+    public void inOrderTraverse(Node<ElemType> root, Function<String, Void> output) {
+        if (isNodeEmpty(root)) {
             return;
         }
-        preOrderTraverse(root.leftChild, visit);
-        visit.apply(root.elem + " ");
-        preOrderTraverse(root.rightChild, visit);
+        preOrderTraverse(root.leftChild, output);
+        output.apply(root.elem + " ");
+        preOrderTraverse(root.rightChild, output);
     }
 
+    @Override
     public void postOrderTraverse() {
         postOrderTraverse(value -> {
             System.out.print(value);
@@ -132,76 +142,74 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
         System.out.print("\n");
     }
 
-    public void postOrderTraverse(Function<String, Void> visit) {
-        postOrderTraverse(root, visit);
-        visit.apply("\n");
+    @Override
+    public void postOrderTraverse(Function<String, Void> output) {
+        postOrderTraverse(root, output);
+        output.apply("\n");
     }
 
-    public void postOrderTraverse(Node<ElemType> root, Function<String, Void> visit) {
-        if (root == null) {
+    public void postOrderTraverse(Node<ElemType> root, Function<String, Void> output) {
+        if (isNodeEmpty(root)) {
             return;
         }
-        postOrderTraverse(root.leftChild, visit);
-        postOrderTraverse(root.rightChild, visit);
-        visit.apply(root.elem + " ");
+        postOrderTraverse(root.leftChild, output);
+        postOrderTraverse(root.rightChild, output);
+        output.apply(root.elem + " ");
     }
 
-    public void levelOderTraverse() {
-        levelOderTraverse(value -> {
+    @Override
+    public void levelOrderTraverse() {
+        levelOrderTraverse(value -> {
             System.out.print(value);
             return null;
         });
         System.out.print("\n");
     }
 
-    public void levelOderTraverse(Function<String, Void> visit) {
-        levelOderTraverse(root, visit);
-        visit.apply("\n");
-    }
-
-    public void levelOderTraverse(Node<ElemType> root, Function<String, Void> visit) {
-        if (root == null) {
+    @Override
+    public void levelOrderTraverse(Function<String, Void> output) {
+        if (isNodeEmpty(root)) {
             return;
         }
         try {
             Queue<Node<ElemType>> queue = new LinkQueue<>();
-            Node<ElemType> p;
             queue.enQueue(root);
             while (!queue.isEmpty()) {
-                p = queue.getHead();
-                queue.deQueue();
-                visit.apply(p.elem + " ");
-                if (p.leftChild != null) {
+                Node<ElemType> p = queue.deQueue();
+                output.apply(p.elem + " ");
+                if (!isNodeEmpty(p.leftChild)) {
                     queue.enQueue(p.leftChild);
                 }
-                if (p.rightChild != null) {
+                if (!isNodeEmpty(p.rightChild)) {
                     queue.enQueue(p.rightChild);
                 }
             }
+            output.apply("\n");
         } catch (BaseException ignored) {
         }
     }
 
+    @Override
     public int getNodeNumber() {
         return getNodeNumber(root);
     }
 
     public int getNodeNumber(Node<ElemType> root) {
-        if (root == null) {
+        if (isNodeEmpty(root)) {
             return 0;
         }
         return 1 + getNodeNumber(root.leftChild) + getNodeNumber(root.rightChild);
     }
 
     public Node<ElemType> getLeftChild(Node<ElemType> node) throws NotExistException {
-        if (node == null) {
+        if (isNodeEmpty(node)) {
             throw new NotExistException("结点不存在");
         }
         return node.leftChild;
     }
 
     public Node<ElemType> getRightChild(Node<ElemType> node) throws NotExistException {
-        if (node == null) {
+        if (isNodeEmpty(node)) {
             throw new NotExistException("结点不存在");
         }
         return node.rightChild;
@@ -209,7 +217,7 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
 
     public Node<ElemType> getLeftSibling(Node<ElemType> node) {
         Node<ElemType> root = getParent(node);
-        if (root == null) {
+        if (isNodeEmpty(node)) {
             return null;
         }
         if (root.rightChild == node) {
@@ -220,7 +228,7 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
 
     public Node<ElemType> getRightSibling(Node<ElemType> node) {
         Node<ElemType> root = getParent(node);
-        if (root == null) {
+        if (isNodeEmpty(node)) {
             return null;
         }
         if (root.leftChild == node) {
@@ -234,14 +242,14 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
     }
 
     public Node<ElemType> getParent(Node<ElemType> root, Node<ElemType> node) {
-        if (root == null) {
+        if (isNodeEmpty(root)) {
             return null;
         }
         if (root.leftChild == node || root.rightChild == node) {
             return root;
         }
         Node<ElemType> temp = getParent(root.leftChild, node);
-        if (temp != null) {
+        if (!isNodeEmpty(temp)) {
             return temp;
         }
         temp = getParent(root.rightChild, node);
@@ -249,7 +257,7 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
     }
 
     public void insertLeftChild(Node<ElemType> node, ElemType elem) throws NotExistException {
-        if (node == null) {
+        if (isNodeEmpty(node)) {
             throw new NotExistException("结点不存在");
         }
         Node<ElemType> p = new Node<>(elem);
@@ -258,7 +266,7 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
     }
 
     public void insertRightChild(Node<ElemType> node, ElemType elem) throws NotExistException {
-        if (node == null) {
+        if (isNodeEmpty(node)) {
             throw new NotExistException("结点不存在");
         }
         Node<ElemType> p = new Node<>(elem);
@@ -266,12 +274,13 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
         node.rightChild = p;
     }
 
+    @Override
     public void clear() {
         clear(root);
     }
 
     public void clear(Node<ElemType> root) {
-        if (root == null) {
+        if (isNodeEmpty(root)) {
             return;
         }
         clear(root.leftChild);
@@ -279,25 +288,26 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
     }
 
     public void deleteLeftChild(Node<ElemType> node) throws NotExistException {
-        if (node == null) {
+        if (isNodeEmpty(node)) {
             throw new NotExistException("结点不存在");
         }
         clear(node.leftChild);
     }
 
     public void deleteRightChild(Node<ElemType> node) throws NotExistException {
-        if (node == null) {
+        if (isNodeEmpty(node)) {
             throw new NotExistException("结点不存在");
         }
         clear(node.rightChild);
     }
 
+    @Override
     public int getHeight() {
         return getHeight(root);
     }
 
     public int getHeight(Node<ElemType> root) {
-        if (root == null) {
+        if (isNodeEmpty(root)) {
             return 0;
         }
         int leftHeight = getHeight(root.leftChild);
@@ -310,7 +320,7 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
             Queue<Node<ElemType>> queue = new LinkQueue<>();
             int maxWidth = 0;
             int number = 0;
-            if (root != null) {
+            if (!isNodeEmpty(root)) {
                 queue.enQueue(root);
                 maxWidth = 1;
                 number = 1;
@@ -320,11 +330,11 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
                 for (int i = 0; i < number; i++) {
                     Node<ElemType> temp = queue.getHead();
                     queue.deQueue();
-                    if (temp.leftChild != null) {
+                    if (!isNodeEmpty(temp.leftChild)) {
                         queue.enQueue(temp.leftChild);
                         nextNumber++;
                     }
-                    if (temp.rightChild != null) {
+                    if (!isNodeEmpty(temp.rightChild)) {
                         queue.enQueue(temp.rightChild);
                         nextNumber++;
                     }
@@ -345,16 +355,16 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
     }
 
     public void getMirror(Node<ElemType> root) {
-        if (root == null || (root.leftChild == null && root.rightChild == null)) {
+        if (isNodeEmpty(root) || (isNodeEmpty(root.leftChild) && isNodeEmpty(root.rightChild))) {
             return;
         }
         Node<ElemType> temp = root.leftChild;
         root.leftChild = root.rightChild;
         root.rightChild = temp;
-        if (root.leftChild != null) {
+        if (!isNodeEmpty(root.leftChild)) {
             getMirror(root.leftChild);
         }
-        if (root.rightChild != null) {
+        if (!isNodeEmpty(root.rightChild)) {
             getMirror(root.rightChild);
         }
     }
