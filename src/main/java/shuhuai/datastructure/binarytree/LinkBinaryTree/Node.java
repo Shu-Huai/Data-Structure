@@ -28,4 +28,28 @@ public class Node<ElemType> {
         this.leftChild = leftChild;
         this.rightChild = rightChild;
     }
+
+    public ElemType getElem() {
+        return elem;
+    }
+
+    public void setElem(ElemType elem) {
+        this.elem = elem;
+    }
+
+    public Node<ElemType> getLeftChild() {
+        return leftChild;
+    }
+
+    public void setLeftChild(Node<ElemType> leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public Node<ElemType> getRightChild() {
+        return rightChild;
+    }
+
+    public void setRightChild(Node<ElemType> rightChild) {
+        this.rightChild = rightChild;
+    }
 }

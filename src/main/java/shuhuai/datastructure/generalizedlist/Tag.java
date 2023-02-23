@@ -1,6 +1,6 @@
 package shuhuai.datastructure.generalizedlist;
 
 @SuppressWarnings({"unused"})
-public enum NodeType {
+public enum Tag {
     Head, Data, List
 }

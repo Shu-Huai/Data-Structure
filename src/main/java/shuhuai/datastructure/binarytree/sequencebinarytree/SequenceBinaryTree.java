@@ -11,60 +11,60 @@ import java.util.function.Function;
 @SuppressWarnings({"unused", "unchecked"})
 public class SequenceBinaryTree<ElemType> implements BinaryTree<ElemType> {
     protected int maxSize;
-    protected int[] tag;
+    protected int[] tags;
     protected ElemType[] elems;
 
     public SequenceBinaryTree() {
         this.maxSize = 1000;
         elems = (ElemType[]) new Object[this.maxSize];
-        tag = new int[this.maxSize];
+        tags = new int[this.maxSize];
         for (int i = 0; i < this.maxSize; i++) {
-            tag[i] = 0;
+            tags[i] = 0;
         }
     }
 
     public SequenceBinaryTree(int maxSize) {
         this.maxSize = maxSize;
         elems = (ElemType[]) new Object[this.maxSize];
-        tag = new int[this.maxSize];
+        tags = new int[this.maxSize];
         for (int i = 0; i < this.maxSize; i++) {
-            tag[i] = 0;
+            tags[i] = 0;
         }
     }
 
     public SequenceBinaryTree(ElemType elem, int maxSize) {
         this.maxSize = maxSize;
         elems = (ElemType[]) new Object[this.maxSize];
-        tag = new int[maxSize];
+        tags = new int[maxSize];
         for (int i = 1; i < maxSize; i++) {
-            tag[i] = 0;
+            tags[i] = 0;
         }
-        tag[0] = 1;
+        tags[0] = 1;
         elems[0] = elem;
     }
 
     public SequenceBinaryTree(SequenceBinaryTree<ElemType> tree) {
         maxSize = tree.maxSize;
         elems = (ElemType[]) new Object[maxSize];
-        tag = new int[maxSize];
+        tags = new int[maxSize];
         for (int i = 0; i < maxSize; i++) {
             elems[i] = tree.elems[i];
-            tag[i] = tree.tag[i];
+            tags[i] = tree.tags[i];
         }
     }
 
     public SequenceBinaryTree(ElemType[] elems, int[] tags, int maxSize) {
         this.maxSize = maxSize;
         this.elems = (ElemType[]) new Object[maxSize];
-        this.tag = new int[maxSize];
+        this.tags = new int[maxSize];
         for (int i = 0; i < maxSize; i++) {
             this.elems[i] = elems[i];
-            this.tag[i] = tags[i];
+            this.tags[i] = tags[i];
         }
     }
 
     public int getRoot() {
-        if (tag[0] == 1) {
+        if (tags[0] == 1) {
             return 0;
         }
         return -1;
@@ -90,7 +90,7 @@ public class SequenceBinaryTree<ElemType> implements BinaryTree<ElemType> {
     }
 
     public boolean isNodeEmpty(int node) {
-        return node < 0 || node >= maxSize || tag[node] == 0;
+        return node < 0 || node >= maxSize || tags[node] == 0;
     }
 
     @Override
@@ -199,28 +199,28 @@ public class SequenceBinaryTree<ElemType> implements BinaryTree<ElemType> {
     }
 
     public int getLeftChild(final int p) {
-        if (2 * p + 1 < maxSize && tag[2 * p + 1] == 1) {
+        if (2 * p + 1 < maxSize && tags[2 * p + 1] == 1) {
             return 2 * p + 1;
         }
         return -1;
     }
 
     public int getRightChild(final int p) {
-        if (2 * p + 2 < maxSize && tag[2 * p + 2] == 1) {
+        if (2 * p + 2 < maxSize && tags[2 * p + 2] == 1) {
             return 2 * p + 2;
         }
         return -1;
     }
 
     public int getLeftSibling(final int node) {
-        if (node % 2 == 1 || node == 0 || tag[node - 1] == 0) {
+        if (node % 2 == 1 || node == 0 || tags[node - 1] == 0) {
             return -1;
         }
         return node - 1;
     }
 
     public int getRightSibling(final int node) {
-        if (node % 2 == 0 || node + 1 >= maxSize || tag[node + 1] == 0) {
+        if (node % 2 == 0 || node + 1 >= maxSize || tags[node + 1] == 0) {
             return -1;
         }
         return node + 1;
@@ -256,9 +256,9 @@ public class SequenceBinaryTree<ElemType> implements BinaryTree<ElemType> {
         if (isNodeEmpty(node)) {
             return;
         }
-        if (2 * node + 1 < maxSize && 2 * node + 1 > 0 && tag[2 * node + 1] == 0) {
+        if (2 * node + 1 < maxSize && 2 * node + 1 > 0 && tags[2 * node + 1] == 0) {
             elems[2 * node + 1] = elem;
-            tag[2 * node + 1] = 1;
+            tags[2 * node + 1] = 1;
         }
     }
 
@@ -266,9 +266,9 @@ public class SequenceBinaryTree<ElemType> implements BinaryTree<ElemType> {
         if (isNodeEmpty(node)) {
             return;
         }
-        if (2 * node + 2 < maxSize && 2 * node + 2 > 0 && tag[2 * node + 2] == 0) {
+        if (2 * node + 2 < maxSize && 2 * node + 2 > 0 && tags[2 * node + 2] == 0) {
             elems[2 * node + 2] = elem;
-            tag[2 * node + 2] = 1;
+            tags[2 * node + 2] = 1;
         }
     }
 
@@ -281,7 +281,7 @@ public class SequenceBinaryTree<ElemType> implements BinaryTree<ElemType> {
         if (node >= 0 && node < maxSize && !isNodeEmpty(node)) {
             clear(getLeftChild(node));
             clear(getRightChild(node));
-            tag[node] = 0;
+            tags[node] = 0;
         }
     }
 

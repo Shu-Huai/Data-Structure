@@ -9,7 +9,7 @@ public class GeneralizedList<ElemType> {
     protected Node<ElemType> head;
 
     public GeneralizedList() {
-        head = new Node<>(NodeType.Head);
+        head = new Node<>(Tag.Head);
         head.refCount = 1;
     }
 
@@ -25,7 +25,7 @@ public class GeneralizedList<ElemType> {
         head.refCount--;
         if (head.refCount == 0) {
             for (Node<ElemType> p = head.next; p != null; p = p.next) {
-                if (p.tag == NodeType.List) {
+                if (p.tag == Tag.List) {
                     clear(p.child);
                 }
             }
@@ -45,13 +45,13 @@ public class GeneralizedList<ElemType> {
     }
 
     void insert(ElemType elem) {
-        Node<ElemType> p = new Node<>(NodeType.Data, head.next);
+        Node<ElemType> p = new Node<>(Tag.Data, head.next);
         p.elem = elem;
         head.next = p;
     }
 
     void insert(GeneralizedList<ElemType> subList) {
-        Node<ElemType> p = new Node<>(NodeType.List, head.next);
+        Node<ElemType> p = new Node<>(Tag.List, head.next);
         p.child = subList.head;
         subList.head.refCount++;
         head.next = p;
@@ -68,7 +68,7 @@ public class GeneralizedList<ElemType> {
             p = p.next;
         }
         pre.next = p.next;
-        if (p.tag == NodeType.List) {
+        if (p.tag == Tag.List) {
             clear(p.child);
         }
     }
@@ -83,7 +83,7 @@ public class GeneralizedList<ElemType> {
         }
         int subMaxDepth = 0;
         for (Node<ElemType> p = head.next; p != null; p = p.next) {
-            if (p.tag == NodeType.List) {
+            if (p.tag == Tag.List) {
                 int curSubDepth = getDepth(p.child);
                 if (subMaxDepth < curSubDepth) {
                     subMaxDepth = curSubDepth;
@@ -104,12 +104,12 @@ public class GeneralizedList<ElemType> {
     }
 
     public Node<ElemType> copy(Node<ElemType> sourceHead) {
-        Node<ElemType> destHead = new Node<>(NodeType.Head);
+        Node<ElemType> destHead = new Node<>(Tag.Head);
         Node<ElemType> destPtr = destHead;
         destHead.refCount = 1;
         for (Node<ElemType> p = sourceHead.next; p != null; p = p.next) {
             destPtr = destPtr.next = new Node<>(p.tag);
-            if (p.tag == NodeType.List) {
+            if (p.tag == Tag.List) {
                 destPtr.child = copy(p.child);
             } else {
                 destPtr.elem = p.elem;
@@ -138,7 +138,7 @@ public class GeneralizedList<ElemType> {
             } else {
                 output.apply(", ");
             }
-            if (p.tag == NodeType.Data) {
+            if (p.tag == Tag.Data) {
                 output.apply((String) p.elem);
             } else {
                 traverse(p.child, output);
