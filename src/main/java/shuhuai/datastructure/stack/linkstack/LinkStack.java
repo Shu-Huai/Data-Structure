@@ -2,6 +2,7 @@ package shuhuai.datastructure.stack.linkstack;
 
 import shuhuai.datastructure.stack.Stack;
 
+@SuppressWarnings({"unused"})
 public class LinkStack<ElemType extends Comparable<? super ElemType>> implements Stack<ElemType> {
     protected Node<ElemType> top;
 

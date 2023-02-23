@@ -4,18 +4,28 @@ import shuhuai.datastructure.exceptions.OverFlowException;
 import shuhuai.datastructure.exceptions.UnderFlowException;
 import shuhuai.datastructure.queue.Queue;
 
+@SuppressWarnings({"unused", "unchecked"})
 public class SequenceQueue<ElemType extends Comparable<? super ElemType>> implements Queue<ElemType> {
     protected int front;
     protected int rear;
     protected int capacity;
     protected ElemType[] elems;
 
-    @SuppressWarnings("unchecked")
     public SequenceQueue(int capacity) {
         elems = (ElemType[]) new Comparable[capacity];
         front = 0;
         rear = 0;
         this.capacity = capacity;
+    }
+
+    public SequenceQueue(SequenceQueue<ElemType> sequenceQueue) {
+        front = sequenceQueue.front;
+        rear = sequenceQueue.rear;
+        capacity = sequenceQueue.capacity;
+        elems = (ElemType[]) new Comparable[capacity];
+        for (int i = front; i != rear; i = (i + 1) % capacity) {
+            elems[i] = sequenceQueue.elems[i];
+        }
     }
 
     @Override
@@ -68,16 +78,5 @@ public class SequenceQueue<ElemType extends Comparable<? super ElemType>> implem
         }
         elems[rear] = elem;
         rear = (rear + 1) % capacity;
-    }
-
-    @SuppressWarnings("unchecked")
-    public SequenceQueue(SequenceQueue<ElemType> sequenceQueue) {
-        front = sequenceQueue.front;
-        rear = sequenceQueue.rear;
-        capacity = sequenceQueue.capacity;
-        elems = (ElemType[]) new Comparable[capacity];
-        for (int i = front; i != rear; i = (i + 1) % capacity) {
-            elems[i] = sequenceQueue.elems[i];
-        }
     }
 }

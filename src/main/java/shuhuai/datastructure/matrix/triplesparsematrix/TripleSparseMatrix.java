@@ -4,6 +4,7 @@ import shuhuai.datastructure.exceptions.OverFlowException;
 import shuhuai.datastructure.exceptions.RangeException;
 import shuhuai.datastructure.matrix.Matrix;
 
+@SuppressWarnings({"unused", "unchecked"})
 public class TripleSparseMatrix<ElemType> implements Matrix<ElemType> {
     protected Triple<ElemType>[] elems;
     protected int capacity;
@@ -11,7 +12,6 @@ public class TripleSparseMatrix<ElemType> implements Matrix<ElemType> {
     protected int colCount;
     protected int elemCount;
 
-    @SuppressWarnings("unchecked")
     public TripleSparseMatrix(int rowCount, int colCount, int capacity) {
         this.rowCount = rowCount;
         this.colCount = colCount;
@@ -20,7 +20,15 @@ public class TripleSparseMatrix<ElemType> implements Matrix<ElemType> {
         this.elemCount = 0;
     }
 
-    @SuppressWarnings("unchecked")
+    public TripleSparseMatrix(TripleSparseMatrix<ElemType> matrix) {
+        rowCount = matrix.rowCount;
+        colCount = matrix.colCount;
+        capacity = matrix.capacity;
+        elems = new Triple[capacity];
+        elemCount = matrix.elemCount;
+        System.arraycopy(matrix.elems, 0, elems, 0, elemCount);
+    }
+
     @Override
     public void clear() {
         rowCount = 0;
@@ -81,16 +89,6 @@ public class TripleSparseMatrix<ElemType> implements Matrix<ElemType> {
             }
         }
         return null;
-    }
-
-    @SuppressWarnings("unchecked")
-    public TripleSparseMatrix(TripleSparseMatrix<ElemType> matrix) {
-        rowCount = matrix.rowCount;
-        colCount = matrix.colCount;
-        capacity = matrix.capacity;
-        elems = new Triple[capacity];
-        elemCount = matrix.elemCount;
-        System.arraycopy(matrix.elems, 0, elems, 0, elemCount);
     }
 
     @Override

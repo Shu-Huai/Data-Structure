@@ -3,6 +3,7 @@ package shuhuai.datastructure.linearlist;
 import shuhuai.datastructure.exceptions.OverFlowException;
 import shuhuai.datastructure.exceptions.RangeException;
 
+@SuppressWarnings({"unused"})
 public interface LinearList<ElemType> {
     int getLength();
 

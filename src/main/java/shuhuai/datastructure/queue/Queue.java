@@ -3,6 +3,7 @@ package shuhuai.datastructure.queue;
 import shuhuai.datastructure.exceptions.OverFlowException;
 import shuhuai.datastructure.exceptions.UnderFlowException;
 
+@SuppressWarnings({"unused"})
 public interface Queue<ElemType> {
     int getLength();
 

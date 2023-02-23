@@ -4,6 +4,7 @@ import shuhuai.datastructure.exceptions.RangeException;
 
 import java.util.Scanner;
 
+@SuppressWarnings({"unused"})
 public class LinkListWithoutHeadTest {
     LinkListWithoutHead<Integer> linkListWithoutHead;
 
@@ -45,7 +46,7 @@ public class LinkListWithoutHeadTest {
                     for (int i = 0; i < input.length(); i++) {
                         if (input.charAt(i) != ' ') {
                             try {
-                                Integer elem = Integer.parseInt(String.valueOf(input.charAt(i)));
+                                int elem = Integer.parseInt(String.valueOf(input.charAt(i)));
                                 linkListWithoutHead.appendElem(elem);
                             } catch (NumberFormatException e) {
                                 System.out.println("输入有误");
@@ -59,9 +60,9 @@ public class LinkListWithoutHeadTest {
                 }
                 case '3' -> {
                     System.out.print("输入下标：");
-                    Integer index = scanner.nextInt();
+                    int index = scanner.nextInt();
                     try {
-                        Integer elem = linkListWithoutHead.getElem(index);
+                        int elem = linkListWithoutHead.getElem(index);
                         System.out.println("元素是：" + elem);
                     } catch (RangeException e) {
                         System.out.println(e.getMessage());
@@ -69,9 +70,9 @@ public class LinkListWithoutHeadTest {
                 }
                 case '4' -> {
                     System.out.print("输入下标：");
-                    Integer index = scanner.nextInt();
+                    int index = scanner.nextInt();
                     System.out.print("输入元素：");
-                    Integer elem = scanner.nextInt();
+                    int elem = scanner.nextInt();
                     try {
                         linkListWithoutHead.setElem(index, elem);
                         System.out.println("成功。");
@@ -81,7 +82,7 @@ public class LinkListWithoutHeadTest {
                 }
                 case '5' -> {
                     System.out.print("输入下标：");
-                    Integer index = scanner.nextInt();
+                    int index = scanner.nextInt();
                     try {
                         linkListWithoutHead.deleteElem(index);
                         System.out.println("成功。");
@@ -91,9 +92,9 @@ public class LinkListWithoutHeadTest {
                 }
                 case '6' -> {
                     System.out.print("输入下标：");
-                    Integer index = scanner.nextInt();
+                    int index = scanner.nextInt();
                     System.out.print("输入元素：");
-                    Integer elem = scanner.nextInt();
+                    int elem = scanner.nextInt();
                     try {
                         linkListWithoutHead.insertElem(index, elem);
                         System.out.println("成功。");
@@ -103,8 +104,8 @@ public class LinkListWithoutHeadTest {
                 }
                 case '7' -> {
                     System.out.print("输入元素：");
-                    Integer elem = scanner.nextInt();
-                    Integer index = linkListWithoutHead.getIndex(elem);
+                    int elem = scanner.nextInt();
+                    int index = linkListWithoutHead.findElem(elem);
                     System.out.println("下标是：" + index);
                 }
                 case '8' -> System.out.println("链表长度是：" + linkListWithoutHead.getLength());
@@ -120,7 +121,7 @@ public class LinkListWithoutHeadTest {
                     for (int i = 0; i < input.length(); i++) {
                         if (input.charAt(i) != ' ') {
                             try {
-                                Integer elem = Integer.parseInt(String.valueOf(input.charAt(i)));
+                                int elem = Integer.parseInt(String.valueOf(input.charAt(i)));
                                 subList.appendElem(elem);
                             } catch (NumberFormatException e) {
                                 System.out.println("输入有误");

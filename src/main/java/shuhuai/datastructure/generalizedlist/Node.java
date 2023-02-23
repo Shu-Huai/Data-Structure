@@ -1,5 +1,6 @@
 package shuhuai.datastructure.generalizedlist;
 
+@SuppressWarnings({"unused"})
 public class Node<ElemType> {
     protected NodeType tag;
     protected Node<ElemType> next;

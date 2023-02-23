@@ -4,6 +4,7 @@ import shuhuai.datastructure.exceptions.OverFlowException;
 import shuhuai.datastructure.exceptions.RangeException;
 import shuhuai.datastructure.matrix.Matrix;
 
+@SuppressWarnings({"unused","unchecked"})
 public class CrossListMatrix<ElemType> implements Matrix<ElemType> {
     protected Node<ElemType>[] rowHead;
     protected Node<ElemType>[] colHead;
@@ -11,7 +12,6 @@ public class CrossListMatrix<ElemType> implements Matrix<ElemType> {
     protected int colCount;
     protected int elemCount;
 
-    @SuppressWarnings("unchecked")
     public CrossListMatrix(int rowCount, int colCount) throws RangeException {
         if (rowCount <= 0 || colCount <= 0) {
             throw new RangeException("范围错误");
@@ -23,7 +23,6 @@ public class CrossListMatrix<ElemType> implements Matrix<ElemType> {
         colHead = new Node[colCount];
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void clear() {
         rowCount = 0;
@@ -111,7 +110,7 @@ public class CrossListMatrix<ElemType> implements Matrix<ElemType> {
         if (row >= rowCount || col >= colCount || row < 0 || col < 0) {
             throw new RangeException("范围错误");
         }
-        Node<ElemType> p = null;
+        Node<ElemType> p;
         for (p = rowHead[row]; p != null; p = p.right) {
             if (p.elem.col >= col) {
                 break;

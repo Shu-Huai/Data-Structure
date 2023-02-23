@@ -1,5 +1,6 @@
 package shuhuai.datastructure.matrix.crosslistmatrix;
 
+@SuppressWarnings({"unused"})
 public class Node<ElemType> {
     protected Triple<ElemType> elem;
     protected Node<ElemType> right;

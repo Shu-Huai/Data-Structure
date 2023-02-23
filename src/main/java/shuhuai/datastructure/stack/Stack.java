@@ -3,6 +3,7 @@ package shuhuai.datastructure.stack;
 import shuhuai.datastructure.exceptions.OverFlowException;
 import shuhuai.datastructure.exceptions.UnderFlowException;
 
+@SuppressWarnings({"unused"})
 public interface Stack<ElemType extends Comparable<? super ElemType>> {
     int getLength();
 

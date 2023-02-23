@@ -1,5 +1,6 @@
 package shuhuai.datastructure.exceptions;
 
+@SuppressWarnings({"unused"})
 public class UnderFlowException extends BaseException {
     public UnderFlowException() {
         super();

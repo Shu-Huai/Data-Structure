@@ -5,6 +5,7 @@ import shuhuai.datastructure.exceptions.RangeException;
 
 import java.util.Scanner;
 
+@SuppressWarnings({"unused"})
 public class SequenceListTest {
     private SequenceList<Integer> sequenceList;
 

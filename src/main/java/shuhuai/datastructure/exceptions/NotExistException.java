@@ -1,5 +1,6 @@
 package shuhuai.datastructure.exceptions;
 
+@SuppressWarnings({"unused"})
 public class NotExistException extends BaseException {
     public NotExistException() {
         super();

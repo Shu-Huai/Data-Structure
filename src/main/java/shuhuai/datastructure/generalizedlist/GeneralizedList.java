@@ -4,6 +4,7 @@ import shuhuai.datastructure.exceptions.RangeException;
 
 import java.util.function.Function;
 
+@SuppressWarnings({"unused"})
 public class GeneralizedList<ElemType> {
     protected Node<ElemType> head;
 
@@ -19,11 +20,9 @@ public class GeneralizedList<ElemType> {
     public void clear(Node<ElemType> head) {
         head.refCount--;
         if (head.refCount == 0) {
-            Node<ElemType> pre = head;
             for (Node<ElemType> p = head.next; p != null; p = p.next) {
-                pre = p;
                 if (p.tag == NodeType.List) {
-                    clear(p.next);
+                    clear(p.child);
                 }
             }
         }
@@ -49,7 +48,7 @@ public class GeneralizedList<ElemType> {
 
     void insert(GeneralizedList<ElemType> subList) {
         Node<ElemType> p = new Node<>(NodeType.List, head.next);
-        p.next = subList.head;
+        p.child = subList.head;
         subList.head.refCount++;
         head.next = p;
     }
@@ -66,7 +65,7 @@ public class GeneralizedList<ElemType> {
         }
         pre.next = p.next;
         if (p.tag == NodeType.List) {
-            clear(p.next);
+            clear(p.child);
         }
     }
 
@@ -81,7 +80,7 @@ public class GeneralizedList<ElemType> {
         int subMaxDepth = 0;
         for (Node<ElemType> p = head.next; p != null; p = p.next) {
             if (p.tag == NodeType.List) {
-                int curSubDepth = getDepth(p.next);
+                int curSubDepth = getDepth(p.child);
                 if (subMaxDepth < curSubDepth) {
                     subMaxDepth = curSubDepth;
                 }
@@ -107,7 +106,7 @@ public class GeneralizedList<ElemType> {
         for (Node<ElemType> p = sourceHead.next; p != null; p = p.next) {
             destPtr = destPtr.next = new Node<>(p.tag);
             if (p.tag == NodeType.List) {
-                copy(p.next);
+                destPtr.child = copy(p.child);
             } else {
                 destPtr.elem = p.elem;
             }
@@ -126,25 +125,25 @@ public class GeneralizedList<ElemType> {
         });
     }
 
-    public void traverse(Function<String, Void> visit) {
-        traverse(head, visit);
+    public void traverse(Function<String, Void> output) {
+        traverse(head, output);
     }
 
-    public void traverse(Node<ElemType> head, Function<String, Void> visit) {
+    public void traverse(Node<ElemType> head, Function<String, Void> output) {
         boolean first = true;
-        visit.apply("(");
+        output.apply("(");
         for (Node<ElemType> p = head.next; p != null; p = p.next) {
             if (first) {
                 first = false;
             } else {
-                visit.apply(", ");
+                output.apply(", ");
             }
             if (p.tag == NodeType.Data) {
-                visit.apply((String) p.elem);
+                output.apply((String) p.elem);
             } else {
-                traverse(p.next, visit);
+                traverse(p.child, output);
             }
         }
-        visit.apply(")\n");
+        output.apply(")\n");
     }
 }

@@ -4,6 +4,7 @@ import shuhuai.datastructure.exceptions.RangeException;
 
 import java.util.Scanner;
 
+@SuppressWarnings({"unused"})
 public class LinkListTest {
     private LinkList<Integer> linkList;
 
@@ -46,7 +47,7 @@ public class LinkListTest {
                     for (int i = 0; i < input.length(); i++) {
                         if (input.charAt(i) != ' ') {
                             try {
-                                Integer elem = Integer.parseInt(String.valueOf(input.charAt(i)));
+                                int elem = Integer.parseInt(String.valueOf(input.charAt(i)));
                                 linkList.appendElem(elem);
                             } catch (NumberFormatException e) {
                                 System.out.println("输入有误");
@@ -60,9 +61,9 @@ public class LinkListTest {
                 }
                 case '3' -> {
                     System.out.print("输入下标：");
-                    Integer index = scanner.nextInt();
+                    int index = scanner.nextInt();
                     try {
-                        Integer elem = linkList.getElem(index);
+                        int elem = linkList.getElem(index);
                         System.out.println("元素是：" + elem);
                     } catch (RangeException e) {
                         System.out.println(e.getMessage());
@@ -70,9 +71,9 @@ public class LinkListTest {
                 }
                 case '4' -> {
                     System.out.print("输入下标：");
-                    Integer index = scanner.nextInt();
+                    int index = scanner.nextInt();
                     System.out.print("输入元素：");
-                    Integer elem = scanner.nextInt();
+                    int elem = scanner.nextInt();
                     try {
                         linkList.setElem(index, elem);
                         System.out.println("成功。");
@@ -82,7 +83,7 @@ public class LinkListTest {
                 }
                 case '5' -> {
                     System.out.print("输入下标：");
-                    Integer index = scanner.nextInt();
+                    int index = scanner.nextInt();
                     try {
                         linkList.deleteElem(index);
                         System.out.println("成功。");
@@ -92,9 +93,9 @@ public class LinkListTest {
                 }
                 case '6' -> {
                     System.out.print("输入下标：");
-                    Integer index = scanner.nextInt();
+                    int index = scanner.nextInt();
                     System.out.print("输入元素：");
-                    Integer elem = scanner.nextInt();
+                    int elem = scanner.nextInt();
                     try {
                         linkList.insertElem(index, elem);
                         System.out.println("成功。");
@@ -104,8 +105,8 @@ public class LinkListTest {
                 }
                 case '7' -> {
                     System.out.print("输入元素：");
-                    Integer elem = scanner.nextInt();
-                    Integer index = linkList.getIndex(elem);
+                    int elem = scanner.nextInt();
+                    int index = linkList.findElem(elem);
                     System.out.println("下标是：" + index);
                 }
                 case '8' -> System.out.println("链表长度是：" + linkList.getLength());
@@ -115,9 +116,9 @@ public class LinkListTest {
                 }
                 case 'a' -> {
                     System.out.print("输入最大值：");
-                    Integer max = scanner.nextInt();
+                    int max = scanner.nextInt();
                     System.out.print("输入最小值：");
-                    Integer min = scanner.nextInt();
+                    int min = scanner.nextInt();
                     try {
                         linkList.deleteBetween(max, min);
                         System.out.println("成功。");
@@ -133,7 +134,7 @@ public class LinkListTest {
                     for (int i = 0; i < input.length(); i++) {
                         if (input.charAt(i) != ' ') {
                             try {
-                                Integer elem = Integer.parseInt(String.valueOf(input.charAt(i)));
+                                int elem = Integer.parseInt(String.valueOf(input.charAt(i)));
                                 subList.appendElem(elem);
                             } catch (NumberFormatException e) {
                                 System.out.println("输入有误");

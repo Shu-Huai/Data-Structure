@@ -1,5 +1,6 @@
 package shuhuai.datastructure.binarytree.LinkBinaryTree;
 
+@SuppressWarnings({"unused"})
 public class Node<ElemType> {
     protected ElemType elem;
     protected Node<ElemType> leftChild;

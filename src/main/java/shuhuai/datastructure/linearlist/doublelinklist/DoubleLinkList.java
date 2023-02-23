@@ -1,7 +1,6 @@
 package shuhuai.datastructure.linearlist.doublelinklist;
 
-import shuhuai.datastructure.linearlist.LinearList;
-
+@SuppressWarnings({"unused"})
 public class DoubleLinkList<ElemType extends Comparable<? super ElemType>> {
     protected Node<ElemType> head;
     protected int size;
@@ -20,7 +19,7 @@ public class DoubleLinkList<ElemType extends Comparable<? super ElemType>> {
     }
 
     public void add(ElemType elem) {
-        Node<ElemType> node = new Node<ElemType>(elem);
+        Node<ElemType> node = new Node<>(elem);
         if (this.head == null) {
             this.head = node;
         } else {
@@ -39,7 +38,7 @@ public class DoubleLinkList<ElemType extends Comparable<? super ElemType>> {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
         if (index == 0) {
-            Node<ElemType> node = new Node<ElemType>(elem);
+            Node<ElemType> node = new Node<>(elem);
             node.next = this.head;
             this.head.prev = node;
             this.head = node;
@@ -48,7 +47,7 @@ public class DoubleLinkList<ElemType extends Comparable<? super ElemType>> {
             for (int i = 0; i < index - 1; i++) {
                 cur = cur.next;
             }
-            Node<ElemType> node = new Node<ElemType>(elem);
+            Node<ElemType> node = new Node<>(elem);
             node.next = cur.next;
             node.prev = cur;
             cur.next.prev = node;

@@ -1,5 +1,6 @@
 package shuhuai.datastructure.matrix.triplesparsematrix;
 
+@SuppressWarnings({"unused"})
 public class Triple<ElemType> {
     protected int row;
     protected int col;

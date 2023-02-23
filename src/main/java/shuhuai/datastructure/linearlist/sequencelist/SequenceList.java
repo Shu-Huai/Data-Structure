@@ -3,23 +3,21 @@ package shuhuai.datastructure.linearlist.sequencelist;
 import shuhuai.datastructure.exceptions.OverFlowException;
 import shuhuai.datastructure.exceptions.RangeException;
 import shuhuai.datastructure.linearlist.LinearList;
-import shuhuai.datastructure.linearlist.linklist.Node;
 
 import java.util.Objects;
 
+@SuppressWarnings({"unused","unchecked"})
 public class SequenceList<ElemType extends Comparable<? super ElemType>> implements LinearList<ElemType> {
     protected ElemType[] elems;
     protected Integer length;
     protected Integer capacity;
 
-    @SuppressWarnings("unchecked")
     public SequenceList() {
         this.capacity = 1000;
         this.elems = (ElemType[]) new Comparable[capacity];
         this.length = 0;
     }
 
-    @SuppressWarnings("unchecked")
     public SequenceList(Integer capacity) {
         this.capacity = capacity;
         elems = (ElemType[]) new Comparable[this.capacity];

@@ -1,5 +1,6 @@
 package shuhuai.datastructure.linearlist.linklistwithouthead;
 
+@SuppressWarnings({"unused"})
 public class LinkListWithoutHeadNode<ElemType> {
     protected ElemType elem;
     protected LinkListWithoutHeadNode<ElemType> next;

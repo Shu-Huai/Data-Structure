@@ -3,6 +3,7 @@ package shuhuai.datastructure.queue.linkqueue;
 import shuhuai.datastructure.exceptions.UnderFlowException;
 import shuhuai.datastructure.queue.Queue;
 
+@SuppressWarnings({"unused"})
 public class LinkQueue<ElemType> implements Queue<ElemType> {
     protected Node<ElemType> front;
     protected Node<ElemType> rear;

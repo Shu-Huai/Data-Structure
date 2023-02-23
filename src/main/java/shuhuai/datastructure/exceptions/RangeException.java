@@ -1,5 +1,6 @@
 package shuhuai.datastructure.exceptions;
 
+@SuppressWarnings({"unused"})
 public class RangeException extends BaseException {
     public RangeException() {
         super();

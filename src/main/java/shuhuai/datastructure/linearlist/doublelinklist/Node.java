@@ -1,5 +1,6 @@
 package shuhuai.datastructure.linearlist.doublelinklist;
 
+@SuppressWarnings({"unused"})
 public class Node<ElemType> {
     protected ElemType elem;
     protected Node<ElemType> prev;

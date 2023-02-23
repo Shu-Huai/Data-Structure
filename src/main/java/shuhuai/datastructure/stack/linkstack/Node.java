@@ -1,6 +1,7 @@
 package shuhuai.datastructure.stack.linkstack;
 
 
+@SuppressWarnings({"unused"})
 public class Node<ElemType> {
     protected ElemType elem;
     protected Node<ElemType> next;

@@ -3,6 +3,7 @@ package shuhuai.datastructure.matrix;
 import shuhuai.datastructure.exceptions.OverFlowException;
 import shuhuai.datastructure.exceptions.RangeException;
 
+@SuppressWarnings({"unused"})
 public interface Matrix<ElemType> {
     void clear();
 

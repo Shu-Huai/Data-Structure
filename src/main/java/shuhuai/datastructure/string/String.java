@@ -3,6 +3,7 @@ package shuhuai.datastructure.string;
 import shuhuai.datastructure.exceptions.RangeException;
 import shuhuai.datastructure.linearlist.linklist.LinkList;
 
+@SuppressWarnings({"unused"})
 public class String {
     protected char[] elems;
     protected int length;

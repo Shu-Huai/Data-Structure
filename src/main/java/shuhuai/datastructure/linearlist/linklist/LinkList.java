@@ -3,6 +3,7 @@ package shuhuai.datastructure.linearlist.linklist;
 import shuhuai.datastructure.exceptions.RangeException;
 import shuhuai.datastructure.linearlist.LinearList;
 
+@SuppressWarnings({"unused"})
 public class LinkList<ElemType extends Comparable<? super ElemType>> implements LinearList<ElemType> {
     protected Node<ElemType> head;
     protected int length;
