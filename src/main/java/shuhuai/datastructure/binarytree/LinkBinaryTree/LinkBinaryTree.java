@@ -91,13 +91,11 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
             System.out.print(value);
             return null;
         });
-        System.out.print("\n");
     }
 
     @Override
     public void preOrderTraverse(Function<String, Void> output) {
         preOrderTraverse(root, output);
-        output.apply("\n");
     }
 
     public void preOrderTraverse(Node<ElemType> root, Function<String, Void> output) {
@@ -115,13 +113,11 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
             System.out.print(value);
             return null;
         });
-        System.out.print("\n");
     }
 
     @Override
     public void inOrderTraverse(Function<String, Void> output) {
         inOrderTraverse(root, output);
-        output.apply("\n");
     }
 
     public void inOrderTraverse(Node<ElemType> root, Function<String, Void> output) {
@@ -139,13 +135,11 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
             System.out.print(value);
             return null;
         });
-        System.out.print("\n");
     }
 
     @Override
     public void postOrderTraverse(Function<String, Void> output) {
         postOrderTraverse(root, output);
-        output.apply("\n");
     }
 
     public void postOrderTraverse(Node<ElemType> root, Function<String, Void> output) {
@@ -163,7 +157,6 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
             System.out.print(value);
             return null;
         });
-        System.out.print("\n");
     }
 
     @Override
@@ -184,7 +177,6 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
                     queue.enQueue(p.rightChild);
                 }
             }
-            output.apply("\n");
         } catch (BaseException ignored) {
         }
     }

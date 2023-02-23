@@ -3,6 +3,8 @@ package shuhuai.datastructure.queue.linkqueue;
 import shuhuai.datastructure.exceptions.UnderFlowException;
 import shuhuai.datastructure.queue.Queue;
 
+import java.util.function.Function;
+
 @SuppressWarnings({"unused"})
 public class LinkQueue<ElemType> implements Queue<ElemType> {
     protected Node<ElemType> front;
@@ -45,13 +47,19 @@ public class LinkQueue<ElemType> implements Queue<ElemType> {
 
     @Override
     public void traverse() {
+        traverse(value -> {
+            System.out.print(value);
+            return null;
+        });
+    }
+
+    @Override
+    public void traverse(Function<String, Void> output) {
         int count = 0;
         for (Node<ElemType> p = front.next; p != null; p = p.next) {
-            System.out.print(p.elem + " ");
+            output.apply(p.elem + " ");
             count++;
         }
-        System.out.println();
-        System.out.println("长度是：" + count);
     }
 
     @Override

@@ -2,8 +2,10 @@ package shuhuai.datastructure.stack.linkstack;
 
 import shuhuai.datastructure.stack.Stack;
 
+import java.util.function.Function;
+
 @SuppressWarnings({"unused"})
-public class LinkStack<ElemType extends Comparable<? super ElemType>> implements Stack<ElemType> {
+public class LinkStack<ElemType> implements Stack<ElemType> {
     protected Node<ElemType> top;
 
     public LinkStack() {
@@ -49,15 +51,21 @@ public class LinkStack<ElemType extends Comparable<? super ElemType>> implements
 
     @Override
     public void traverse() {
+        traverse(value -> {
+            System.out.print(value);
+            return null;
+        });
+    }
+
+    @Override
+    public void traverse(Function<String, Void> output) {
         int count = 0;
         Node<ElemType> p = top;
         while (p != null) {
-            System.out.print(p.elem + " ");
+            output.apply(p.elem + " ");
             count++;
             p = p.next;
         }
-        System.out.println();
-        System.out.println("长度是：" + count);
     }
 
     @Override

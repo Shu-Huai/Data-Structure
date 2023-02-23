@@ -4,6 +4,8 @@ import shuhuai.datastructure.exceptions.OverFlowException;
 import shuhuai.datastructure.exceptions.UnderFlowException;
 import shuhuai.datastructure.queue.Queue;
 
+import java.util.function.Function;
+
 @SuppressWarnings({"unused", "unchecked"})
 public class SequenceQueue<ElemType extends Comparable<? super ElemType>> implements Queue<ElemType> {
     protected int front;
@@ -46,11 +48,17 @@ public class SequenceQueue<ElemType extends Comparable<? super ElemType>> implem
 
     @Override
     public void traverse() {
+        traverse(value -> {
+            System.out.print(value);
+            return null;
+        });
+    }
+
+    @Override
+    public void traverse(Function<String, Void> output) {
         for (int i = front; i != rear; i = (i + 1) % capacity) {
-            System.out.print(elems[i] + " ");
+            output.apply(elems[i] + " ");
         }
-        System.out.println();
-        System.out.println("长度是：" + getLength());
     }
 
     @Override

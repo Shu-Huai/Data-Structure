@@ -144,6 +144,6 @@ public class GeneralizedList<ElemType> {
                 traverse(p.child, output);
             }
         }
-        output.apply(")\n");
+        output.apply(")");
     }
 }
