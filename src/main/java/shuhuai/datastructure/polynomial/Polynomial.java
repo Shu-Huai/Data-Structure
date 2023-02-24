@@ -5,6 +5,8 @@ import shuhuai.datastructure.exceptions.RangeException;
 import shuhuai.datastructure.linearlist.LinearList;
 import shuhuai.datastructure.linearlist.linklist.LinkList;
 
+import java.util.function.Function;
+
 import static java.lang.Math.pow;
 
 @SuppressWarnings({"unused"})
@@ -38,13 +40,48 @@ public class Polynomial {
         polyList.clear();
     }
 
-    public void Display() {
+    public void traverse() {
+        traverse(value -> {
+            System.out.print(value);
+            return null;
+        });
+    }
 
+    public void traverse(Function<String, Void> output) {
+        int pos = 0;
+        PolyItem it = null;
+        boolean status = true;
+        try {
+            it = polyList.getElem(pos);
+        } catch (RangeException e) {
+            status = false;
+        }
+        while (status) {
+            if (pos > 1 && it.coefficient > 0) {
+                output.apply("+");
+            }
+            if (it.coefficient != 1)
+                if (it.coefficient != -1) {
+                    output.apply(String.valueOf(it.coefficient));
+                } else {
+                    output.apply("-");
+                }
+            if (it.index > 1) {
+                output.apply("x^" + it.index);
+            } else if (it.index == 1) {
+                output.apply("x");
+            }
+            try {
+                it = polyList.getElem(++pos);
+            } catch (RangeException e) {
+                status = false;
+            }
+        }
     }
 
     public void insertElem(PolyItem item) {
         try {
-            PolyItem it = polyList.getElem(1);
+            PolyItem it = polyList.getElem(0);
             int pos = 0;
             boolean status = true;
             while (status && it.index > item.index) {
@@ -66,8 +103,8 @@ public class Polynomial {
         LinkList<PolyItem> la = (LinkList<PolyItem>) polyList;
         LinkList<PolyItem> lb = (LinkList<PolyItem>) p.polyList;
         LinkList<PolyItem> lc = new LinkList<>();
-        int aPos = 1;
-        int bPos = 1;
+        int aPos = 0;
+        int bPos = 0;
         PolyItem aItem = new PolyItem();
         PolyItem bItem = new PolyItem();
         boolean aStatus = true;
@@ -121,7 +158,6 @@ public class Polynomial {
                 aStatus = false;
             }
         }
-
         while (bStatus) {
             lc.appendElem(bItem);
             try {
@@ -148,7 +184,7 @@ public class Polynomial {
         double result = 0;
         try {
             for (int i = 0; i < polyList.getLength(); i++) {
-                PolyItem t = polyList.getElem(i + 1);
+                PolyItem t = polyList.getElem(i);
                 result += t.coefficient * pow(x, t.index);
             }
         } catch (BaseException ignored) {
