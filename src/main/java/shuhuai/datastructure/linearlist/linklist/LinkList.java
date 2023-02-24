@@ -23,16 +23,11 @@ public class LinkList<ElemType extends Comparable<? super ElemType>> implements 
         }
     }
 
-    public LinkList(final LinkList<ElemType> linkList) {
-        head = new Node<>();
-        length = linkList.length;
-        Node<ElemType> p = head;
-        Node<ElemType> q = linkList.head;
-        while (q.next != null) {
-            p.next = new Node<>(q.elem);
-            p = p.next;
-            q = q.next;
+    public LinkList(LinkList<ElemType> linkList) {
+        if (linkList == null) {
+            return;
         }
+        copy(linkList);
     }
 
     public Node<ElemType> getHead() {
@@ -199,6 +194,21 @@ public class LinkList<ElemType extends Comparable<? super ElemType>> implements 
             } else {
                 p = p.next;
             }
+        }
+    }
+
+    public void copy(LinearList<ElemType> linkList) {
+        if (linkList == null) {
+            return;
+        }
+        head = new Node<>();
+        length = ((LinkList<ElemType>) linkList).length;
+        Node<ElemType> p = head;
+        Node<ElemType> q = ((LinkList<ElemType>) linkList).head;
+        while (q.next != null) {
+            p.next = new Node<>(q.elem);
+            p = p.next;
+            q = q.next;
         }
     }
 }

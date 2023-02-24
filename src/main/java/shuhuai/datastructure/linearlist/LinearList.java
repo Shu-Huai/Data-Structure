@@ -26,4 +26,6 @@ public interface LinearList<ElemType> {
     ElemType getElem(int index) throws RangeException;
 
     int findElem(ElemType elem);
+
+    void copy(LinearList<ElemType> list);
 }

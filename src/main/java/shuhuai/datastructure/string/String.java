@@ -20,6 +20,13 @@ public class String {
         elems[length] = '\0';
     }
 
+    public String(java.lang.String string) {
+        length = string.length();
+        elems = new char[length + 1];
+        System.arraycopy(string.toCharArray(), 0, elems, 0, length);
+        elems[length] = '\0';
+    }
+
     public String(char[] chars) {
         length = chars.length;
         elems = new char[length + 1];
@@ -66,11 +73,11 @@ public class String {
         System.out.println("长度是：" + getLength());
     }
 
-    String copy() {
+    public String copy() {
         return new String(this);
     }
 
-    String copy(int length) throws RangeException {
+    public String copy(int length) throws RangeException {
         length = Math.min(length, this.length);
         char[] result = new char[length + 1];
         if (length >= 0) {
@@ -82,7 +89,7 @@ public class String {
         return new String(result);
     }
 
-    String insert(String subString, int index) {
+    public String insert(String subString, int index) {
         char[] result = new char[length + subString.length + 1];
         System.arraycopy(elems, 0, result, 0, index);
         System.arraycopy(subString.elems, 0, result, index, subString.length);
@@ -91,7 +98,15 @@ public class String {
         return new String(result);
     }
 
-    String delete(int index, int length) throws RangeException {
+    public String append(String subString) {
+        char[] result = new char[length + subString.length + 1];
+        System.arraycopy(elems, 0, result, 0, elems.length - 1);
+        System.arraycopy(subString.elems, 0, result, elems.length, subString.length - 1);
+        result[length + subString.length] = '\0';
+        return new String(result);
+    }
+
+    public String delete(int index, int length) throws RangeException {
         if (length < 0 || length > this.length) {
             throw new RangeException("范围错误");
         }
@@ -105,7 +120,7 @@ public class String {
         return new String(result);
     }
 
-    String subString(int index, int length) throws RangeException {
+    public String subString(int index, int length) throws RangeException {
         if (length < 0 || length > this.length) {
             throw new RangeException("范围错误");
         }
