@@ -31,6 +31,9 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> impleme
     }
 
     public SequenceList(SequenceList<ElemType> sequenceList) {
+        if (sequenceList == null) {
+            return;
+        }
         this.elems = sequenceList.elems.clone();
         this.length = sequenceList.length;
         this.capacity = sequenceList.capacity;
@@ -148,6 +151,16 @@ public class SequenceList<ElemType extends Comparable<? super ElemType>> impleme
             }
         }
         return -1;
+    }
+
+    @Override
+    public void copy(LinearList<ElemType> list) {
+        if (list == null) {
+            return;
+        }
+        this.elems = ((SequenceList<ElemType>) list).elems.clone();
+        this.length = ((SequenceList<ElemType>) list).length;
+        this.capacity = ((SequenceList<ElemType>) list).capacity;
     }
 
     public void swap(int firstIndex, int secondIndex) throws RangeException {

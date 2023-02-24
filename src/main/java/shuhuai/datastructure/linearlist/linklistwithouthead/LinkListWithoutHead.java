@@ -24,6 +24,9 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
     }
 
     public LinkListWithoutHead(final LinkListWithoutHead<ElemType> linkList) {
+        if (linkList == null) {
+            return;
+        }
         head = new LinkListWithoutHeadNode<>(linkList.head.elem);
         LinkListWithoutHeadNode<ElemType> p = head;
         LinkListWithoutHeadNode<ElemType> q = linkList.head;
@@ -167,6 +170,22 @@ public class LinkListWithoutHead<ElemType extends Comparable<? super ElemType>> 
             p = p.next;
         }
         return -1;
+    }
+
+    @Override
+    public void copy(LinearList<ElemType> list) {
+        if (list == null) {
+            return;
+        }
+        head = new LinkListWithoutHeadNode<>(((LinkListWithoutHead<ElemType>) list).head.elem);
+        LinkListWithoutHeadNode<ElemType> p = head;
+        LinkListWithoutHeadNode<ElemType> q = ((LinkListWithoutHead<ElemType>) list).head;
+        while (q.next != null) {
+            p.next = new LinkListWithoutHeadNode<>(q.next.elem);
+            p = p.next;
+            q = q.next;
+        }
+        this.length = ((LinkListWithoutHead<ElemType>) list).length;
     }
 
     public void reverse() {
