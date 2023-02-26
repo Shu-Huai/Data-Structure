@@ -12,25 +12,25 @@ public class MinHeap<ElemType extends Comparable<Object>> implements Heap<ElemTy
     protected int length;
     protected int capacity;
 
-    MinHeap() {
+    public MinHeap() {
         capacity = 1000;
         length = 0;
         elems = (ElemType[]) new Comparable[capacity];
     }
 
-    MinHeap(int capacity) {
+    public MinHeap(int capacity) {
         this.capacity = capacity;
         length = 0;
         elems = (ElemType[]) new Comparable[capacity];
     }
 
-    MinHeap(ElemType[] elems, int length) {
+    public MinHeap(ElemType[] elems, int length) {
         capacity = 1000;
         this.length = length;
         this.elems = (ElemType[]) new Comparable[capacity];
     }
 
-    MinHeap(ElemType[] elems, int length, int capacity) {
+    public MinHeap(ElemType[] elems, int length, int capacity) {
         this.capacity = capacity;
         this.length = length;
         this.elems = (ElemType[]) new Comparable[capacity];

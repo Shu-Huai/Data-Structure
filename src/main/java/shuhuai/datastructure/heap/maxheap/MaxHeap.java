@@ -12,25 +12,25 @@ public class MaxHeap<ElemType extends Comparable<Object>> implements Heap<ElemTy
     protected int length;
     protected int capacity;
 
-    MaxHeap() {
+    public MaxHeap() {
         capacity = 1000;
         length = 0;
         elems = (ElemType[]) new Comparable[capacity];
     }
 
-    MaxHeap(int capacity) {
+    public MaxHeap(int capacity) {
         this.capacity = capacity;
         length = 0;
         elems = (ElemType[]) new Comparable[capacity];
     }
 
-    MaxHeap(ElemType[] elems, int length) {
+    public MaxHeap(ElemType[] elems, int length) {
         capacity = 1000;
         this.length = length;
         this.elems = (ElemType[]) new Comparable[capacity];
     }
 
-    MaxHeap(ElemType[] elems, int length, int capacity) {
+    public MaxHeap(ElemType[] elems, int length, int capacity) {
         this.capacity = capacity;
         this.length = length;
         this.elems = (ElemType[]) new Comparable[capacity];
