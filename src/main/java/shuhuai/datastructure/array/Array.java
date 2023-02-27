@@ -29,4 +29,10 @@ public class Array<ElemType> {
     public void append(ElemType elem) {
         elems[length++] = elem;
     }
+
+    public void copy(Array<ElemType> array) {
+        elems = (ElemType[]) new Object[array.elems.length];
+        length = array.length;
+        System.arraycopy(array.elems, 0, elems, 0, elems.length);
+    }
 }
