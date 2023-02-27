@@ -1,4 +1,4 @@
-package shuhuai.graph;
+package shuhuai.datastructure.graph;
 
 import shuhuai.datastructure.exceptions.NotExistException;
 import shuhuai.datastructure.exceptions.OverFlowException;

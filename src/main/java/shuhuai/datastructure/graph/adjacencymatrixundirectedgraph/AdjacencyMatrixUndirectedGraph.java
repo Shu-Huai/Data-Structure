@@ -1,9 +1,9 @@
-package shuhuai.graph.adjacencymatrixundirectedgraph;
+package shuhuai.datastructure.graph.adjacencymatrixundirectedgraph;
 
 import shuhuai.datastructure.exceptions.*;
+import shuhuai.datastructure.graph.Graph;
 import shuhuai.datastructure.queue.Queue;
 import shuhuai.datastructure.queue.linkqueue.LinkQueue;
-import shuhuai.graph.Graph;
 
 import java.util.function.Function;
 
