@@ -25,4 +25,8 @@ public class Array<ElemType> {
     public int getLength() {
         return length;
     }
+
+    public void append(ElemType elem) {
+        elems[length++] = elem;
+    }
 }

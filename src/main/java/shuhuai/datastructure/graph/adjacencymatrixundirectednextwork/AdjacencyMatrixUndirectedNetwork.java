@@ -1,4 +1,4 @@
-package shuhuai.datastructure.graph.adjacencymatrixundirectedgraph;
+package shuhuai.datastructure.graph.adjacencymatrixundirectednextwork;
 
 import shuhuai.datastructure.array.Array;
 import shuhuai.datastructure.exceptions.*;
@@ -241,11 +241,11 @@ public class AdjacencyMatrixUndirectedNetwork<ElemType, WeightType extends Compa
         vertexes[vertex] = e;
     }
 
-    public void setVisited(int vertex, boolean val) throws RangeException {
+    public void setVisited(int vertex, boolean isVisited) throws RangeException {
         if (vertex < 0 || vertex >= vertexNum) {
             throw new RangeException("范围错误");
         }
-        isVisited[vertex] = val;
+        this.isVisited[vertex] = isVisited;
     }
 
     public int getVertexNum() {
