@@ -66,22 +66,22 @@ public class LinkBinaryTree<ElemType> implements BinaryTree<ElemType> {
         node.elem = elem;
     }
 
-    public Node<ElemType> find(ElemType elem) {
-        return find(root, elem);
+    public Node<ElemType> search(ElemType elem) {
+        return search(root, elem);
     }
 
-    public Node<ElemType> find(Node<ElemType> root, ElemType elem) {
+    public Node<ElemType> search(Node<ElemType> root, ElemType elem) {
         if (isNodeEmpty(root)) {
             return null;
         }
         if (root.elem == elem) {
             return root;
         }
-        Node<ElemType> p = find(root.leftChild, elem);
+        Node<ElemType> p = search(root.leftChild, elem);
         if (!isNodeEmpty(p)) {
             return p;
         }
-        p = find(root.rightChild, elem);
+        p = search(root.rightChild, elem);
         return p;
     }
 

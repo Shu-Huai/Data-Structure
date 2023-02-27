@@ -52,4 +52,13 @@ public class Node<ElemType> {
     public void setRightChild(Node<ElemType> rightChild) {
         this.rightChild = rightChild;
     }
+
+    public void copy(Node<ElemType> node) {
+        if (node == null) {
+            return;
+        }
+        elem = node.elem;
+        leftChild = node.leftChild;
+        rightChild = node.rightChild;
+    }
 }

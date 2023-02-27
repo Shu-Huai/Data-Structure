@@ -1,7 +1,5 @@
 package shuhuai.datastructure.sort;
 
-import shuhuai.datastructure.array.Array;
-
 import java.util.Random;
 
 @SuppressWarnings({"unused", "unchecked"})
@@ -9,90 +7,90 @@ public class Sort<ElemType extends Comparable<ElemType>> {
     public Sort() {
     }
 
-    public void bubbleSort(Array<ElemType> sequenceList) {
-        for (int i = 0; i < sequenceList.getLength(); i++) {
-            for (int j = 0; j < sequenceList.getLength() - i - 1; j++) {
-                if (sequenceList.get(j).compareTo(sequenceList.get(j + 1)) > 0) {
-                    ElemType temp = sequenceList.get(j);
-                    sequenceList.set(j, sequenceList.get(j + 1));
-                    sequenceList.set(j + 1, temp);
+    public void bubbleSort(ElemType[] sequenceList) {
+        for (int i = 0; i < sequenceList.length; i++) {
+            for (int j = 0; j < sequenceList.length - i - 1; j++) {
+                if (sequenceList[j].compareTo(sequenceList[j + 1]) > 0) {
+                    ElemType temp = sequenceList[j];
+                    sequenceList[j] = sequenceList[j + 1];
+                    sequenceList[j + 1] = temp;
                 }
             }
         }
     }
 
-    public void quickSort(Array<ElemType> sequenceList) {
-        quickSort(sequenceList, 0, sequenceList.getLength() - 1);
+    public void quickSort(ElemType[] sequenceList) {
+        quickSort(sequenceList, 0, sequenceList.length - 1);
     }
 
-    public void quickSort(Array<ElemType> sequenceList, int low, int high) {
+    public void quickSort(ElemType[] sequenceList, int low, int high) {
         if (low < high) {
-            ElemType referenceValue = sequenceList.get(low);
+            ElemType referenceValue = sequenceList[low];
             int i = low;
             int j = high;
             while (i < j) {
-                while (i < j && sequenceList.get(j).compareTo(referenceValue) >= 0) {
+                while (i < j && sequenceList[j].compareTo(referenceValue) >= 0) {
                     j--;
                 }
                 if (i < j) {
-                    sequenceList.set(i, sequenceList.get(j));
+                    sequenceList[i] = sequenceList[j];
                     i++;
                 }
-                while (i < j && sequenceList.get(i).compareTo(referenceValue) <= 0) {
+                while (i < j && sequenceList[i].compareTo(referenceValue) <= 0) {
                     i++;
                 }
                 if (i < j) {
-                    sequenceList.set(j, sequenceList.get(i));
+                    sequenceList[j] = sequenceList[i];
                     j--;
                 }
             }
-            sequenceList.set(i, referenceValue);
+            sequenceList[i] = referenceValue;
             quickSort(sequenceList, low, i - 1);
             quickSort(sequenceList, i + 1, high);
         }
     }
 
-    public void straightInsertSort(Array<ElemType> sequenceList) {
-        for (int i = 1; i < sequenceList.getLength(); i++) {
+    public void straightInsertSort(ElemType[] sequenceList) {
+        for (int i = 1; i < sequenceList.length; i++) {
             int j;
-            ElemType temp = sequenceList.get(i);
+            ElemType temp = sequenceList[i];
             for (j = i - 1; j >= 0; j--) {
-                if (sequenceList.get(j).compareTo(temp) <= 0) {
+                if (sequenceList[j].compareTo(temp) <= 0) {
                     break;
                 }
-                sequenceList.set(j + 1, sequenceList.get(j));
+                sequenceList[j + 1] = sequenceList[j];
             }
-            sequenceList.set(j + 1, temp);
+            sequenceList[j + 1] = temp;
         }
     }
 
-    public void binaryInsertSort(Array<ElemType> sequenceList) {
-        for (int i = 1; i < sequenceList.getLength(); i++) {
+    public void binaryInsertSort(ElemType[] sequenceList) {
+        for (int i = 1; i < sequenceList.length; i++) {
             int low = 0;
             int high = i - 1;
-            ElemType key = sequenceList.get(i);
+            ElemType key = sequenceList[i];
             while (low <= high) {
                 int middle = (low + high) / 2;
-                if (key.compareTo(sequenceList.get(middle)) < 0) {
+                if (key.compareTo(sequenceList[middle]) < 0) {
                     high = middle - 1;
-                } else if (key.compareTo(sequenceList.get(middle)) > 0) {
+                } else if (key.compareTo(sequenceList[middle]) > 0) {
                     low = middle + 1;
                 }
             }
             for (int j = i - 1; j >= low; j--) {
-                sequenceList.set(j + 1, sequenceList.get(j));
+                sequenceList[j + 1] = sequenceList[j];
             }
-            sequenceList.set(low, key);
+            sequenceList[low] = key;
         }
     }
 
-    public void TwoWayInsertSort(Array<ElemType> sequenceList) {
-        ElemType[] result = (ElemType[]) new Comparable[sequenceList.getLength()];
+    public void TwoWayInsertSort(ElemType[] sequenceList) {
+        ElemType[] result = (ElemType[]) new Comparable[sequenceList.length];
         int head = 0;
         int tail = 0;
-        result[0] = sequenceList.get(0);
-        for (int i = 1; i < sequenceList.getLength(); i++) {
-            ElemType temp = sequenceList.get(i);
+        result[0] = sequenceList[0];
+        for (int i = 1; i < sequenceList.length; i++) {
+            ElemType temp = sequenceList[i];
             if (temp.compareTo(result[0]) > 0) {
                 int j;
                 for (j = tail; j > 0; j--) {
@@ -105,11 +103,11 @@ public class Sort<ElemType extends Comparable<ElemType>> {
                 tail++;
             } else {
                 if (head == 0) {
-                    result[sequenceList.getLength() - 1] = temp;
-                    head = sequenceList.getLength() - 1;
+                    result[sequenceList.length - 1] = temp;
+                    head = sequenceList.length - 1;
                 } else {
                     int j;
-                    for (j = head; j < sequenceList.getLength(); j++) {
+                    for (j = head; j < sequenceList.length; j++) {
                         if (result[j].compareTo(temp) >= 0) {
                             break;
                         }
@@ -121,81 +119,81 @@ public class Sort<ElemType extends Comparable<ElemType>> {
             }
         }
         int count = 0;
-        for (int i = head; i != tail; i = (i + 1) % sequenceList.getLength()) {
-            sequenceList.set(count, result[i]);
+        for (int i = head; i != tail; i = (i + 1) % sequenceList.length) {
+            sequenceList[count] = result[i];
             count++;
         }
-        sequenceList.set(0, result[head]);
+        sequenceList[0] = result[head];
     }
 
-    public void shellSort(Array<ElemType> sequenceList) {
-        int distance = sequenceList.getLength() / 2;
+    public void shellSort(ElemType[] sequenceList) {
+        int distance = sequenceList.length / 2;
         while (distance > 0) {
-            for (int i = distance; i < sequenceList.getLength(); i++) {
+            for (int i = distance; i < sequenceList.length; i++) {
                 int j;
-                ElemType temp = sequenceList.get(i);
+                ElemType temp = sequenceList[i];
                 for (j = i - distance; j >= 0; j -= distance) {
-                    if (sequenceList.get(j).compareTo(temp) <= 0) {
+                    if (sequenceList[j].compareTo(temp) <= 0) {
                         break;
                     }
-                    sequenceList.set(j + distance, sequenceList.get(j));
+                    sequenceList[j + distance] = sequenceList[j];
                 }
-                sequenceList.set(j + distance, temp);
+                sequenceList[j + distance] = temp;
             }
             distance /= 2;
         }
     }
 
-    public void merge(Array<ElemType> sequenceList, int low, int middle, int high) {
+    public void merge(ElemType[] sequenceList, int low, int middle, int high) {
         ElemType[] result = (ElemType[]) new Comparable[high + 1];
         int i = low;
         int j = middle + 1;
         int k = low;
         while (i <= middle && j <= high) {
-            if (sequenceList.get(i).compareTo(sequenceList.get(j)) <= 0) {
-                result[k] = sequenceList.get(i);
+            if (sequenceList[i].compareTo(sequenceList[j]) <= 0) {
+                result[k] = sequenceList[i];
                 i++;
             } else {
-                result[k] = sequenceList.get(j);
+                result[k] = sequenceList[j];
                 j++;
             }
             k++;
         }
         while (i <= middle) {
-            result[k] = sequenceList.get(i);
+            result[k] = sequenceList[i];
             k++;
             i++;
         }
         while (j <= high) {
-            result[k] = sequenceList.get(j);
+            result[k] = sequenceList[j];
             k++;
             j++;
         }
         for (k = low; k <= high; k++) {
-            sequenceList.set(k, result[k]);
+            sequenceList[k] = result[k];
         }
     }
 
-    public void mergeSort(Array<ElemType> sequenceList) {
+    public void mergeSort(ElemType[] sequenceList) {
         int intervalLength = 1;
-        while (intervalLength < sequenceList.getLength()) {
+        while (intervalLength < sequenceList.length) {
             int index = 0;
-            while (index + 2 * intervalLength <= sequenceList.getLength()) {
+            while (index + 2 * intervalLength <= sequenceList.length) {
                 merge(sequenceList, index, index + intervalLength - 1, index + 2 * intervalLength - 1);
                 index += 2 * intervalLength;
             }
-            if (index + intervalLength < sequenceList.getLength()) {
-                merge(sequenceList, index, index + intervalLength - 1, sequenceList.getLength() - 1);
+            if (index + intervalLength < sequenceList.length) {
+                merge(sequenceList, index, index + intervalLength - 1, sequenceList.length - 1);
             }
             intervalLength *= 2;
         }
     }
 
-    public void mergeSortWithRecursion(Array<ElemType> sequenceList) {
-        mergeSortWithRecursion(sequenceList, 0, sequenceList.getLength() - 1);
+    public void mergeSortWithRecursion(ElemType[] sequenceList) {
+        mergeSortWithRecursion(sequenceList, 0, sequenceList.length - 1);
     }
 
-    public void mergeSortWithRecursion(Array<ElemType> sequenceList, int low, int high) {
+    public void mergeSortWithRecursion(ElemType[] sequenceList, int low, int high) {
         if (low >= high) {
             return;
         }
@@ -205,50 +203,48 @@ public class Sort<ElemType extends Comparable<ElemType>> {
         merge(sequenceList, low, middle, high);
     }
 
-    public void MonkeySort(Array<ElemType> sequenceList) {
+    public void MonkeySort(ElemType[] sequenceList) {
         boolean isSorted = false;
-        ElemType[] result = (ElemType[]) new Comparable[sequenceList.getLength()];
+        ElemType[] result = (ElemType[]) new Comparable[sequenceList.length];
         while (!isSorted) {
-            boolean[] needIndex = new boolean[sequenceList.getLength()];
-            for (int i = 0; i < sequenceList.getLength(); i++) {
+            boolean[] needIndex = new boolean[sequenceList.length];
+            for (int i = 0; i < sequenceList.length; i++) {
                 needIndex[i] = true;
             }
-            for (int i = 0; i < sequenceList.getLength(); i++) {
+            for (int i = 0; i < sequenceList.length; i++) {
                 Random rand = new Random();
-                int index = rand.nextInt(sequenceList.getLength());
+                int index = rand.nextInt(sequenceList.length);
                 if (needIndex[index]) {
-                    result[i] = sequenceList.get(index);
+                    result[i] = sequenceList[index];
                     needIndex[index] = false;
                 } else {
                     i--;
                 }
             }
             isSorted = true;
-            for (int i = 0; i < sequenceList.getLength() - 1; i++) {
+            for (int i = 0; i < sequenceList.length - 1; i++) {
                 if (result[i].compareTo(result[i + 1]) > 0) {
                     isSorted = false;
                     break;
                 }
             }
         }
-        for (int i = 0; i < sequenceList.getLength(); i++) {
-            sequenceList.set(i, result[i]);
-        }
+        System.arraycopy(result, 0, sequenceList, 0, sequenceList.length);
     }
 
-    public void countSort(Array<ElemType> sequenceList) {
-        int[] indexes = new int[sequenceList.getLength()];
-        for (int i = 0; i < sequenceList.getLength(); i++) {
-            for (int j = 0; j < sequenceList.getLength(); j++) {
-                if (sequenceList.get(j).compareTo(sequenceList.get(i)) < 0) {
+    public void countSort(ElemType[] sequenceList) {
+        int[] indexes = new int[sequenceList.length];
+        for (int i = 0; i < sequenceList.length; i++) {
+            for (ElemType elemType : sequenceList) {
+                if (elemType.compareTo(sequenceList[i]) < 0) {
                     indexes[i]++;
                 }
             }
         }
-        Array<ElemType> result = new Array<>(sequenceList.getLength());
-        for (int i = 0; i < sequenceList.getLength(); i++) {
-            result.set(indexes[i], sequenceList.get(i));
+        ElemType[] result = (ElemType[]) new Comparable[sequenceList.length];
+        for (int i = 0; i < sequenceList.length; i++) {
+            result[indexes[i]] = sequenceList[i];
         }
-        sequenceList.copy(result);
+        System.arraycopy(result, 0, sequenceList, 0, sequenceList.length);
     }
 }
