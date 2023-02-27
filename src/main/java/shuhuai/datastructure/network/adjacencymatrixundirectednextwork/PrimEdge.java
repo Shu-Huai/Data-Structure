@@ -1,4 +1,4 @@
-package shuhuai.datastructure.graph.adjacencymatrixundirectednextwork;
+package shuhuai.datastructure.network.adjacencymatrixundirectednextwork;
 
 @SuppressWarnings({"unused"})
 public class PrimEdge<WeightType> {

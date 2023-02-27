@@ -28,20 +28,20 @@ public class Node<ElemType> {
         this.parent = parent;
     }
 
-    public void setElem(ElemType data) {
-        this.elem = data;
-    }
-
-    public void setParent(int parent) {
-        this.parent = parent;
-    }
-
     public ElemType getElem() {
         return elem;
     }
 
+    public void setElem(ElemType data) {
+        this.elem = data;
+    }
+
     public int getParent() {
         return parent;
+    }
+
+    public void setParent(int parent) {
+        this.parent = parent;
     }
 
     public void copy(Node<ElemType> node) {

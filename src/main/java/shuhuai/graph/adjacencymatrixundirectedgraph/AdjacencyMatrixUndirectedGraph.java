@@ -1,13 +1,14 @@
-package shuhuai.datastructure.graph.adjacencymatrixundirectedgraph;
+package shuhuai.graph.adjacencymatrixundirectedgraph;
 
 import shuhuai.datastructure.exceptions.*;
 import shuhuai.datastructure.queue.Queue;
 import shuhuai.datastructure.queue.linkqueue.LinkQueue;
+import shuhuai.graph.Graph;
 
 import java.util.function.Function;
 
 @SuppressWarnings({"unused", "unchecked"})
-public class AdjacencyMatrixUndirectedGraph<ElemType> {
+public class AdjacencyMatrixUndirectedGraph<ElemType> implements Graph<ElemType> {
     protected int vertexNum;
     protected int edgeNum;
     protected ElemType[] vertexes;
@@ -80,15 +81,18 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         }
     }
 
+    @Override
     public void clear() {
         vertexNum = 0;
         edgeNum = 0;
     }
 
+    @Override
     public boolean isEmpty() {
         return vertexNum == 0;
     }
 
+    @Override
     public void traverse() {
         traverse(value -> {
             System.out.print(value);
@@ -96,6 +100,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         });
     }
 
+    @Override
     public void traverse(Function<String, Void> output) {
         for (int i = 0; i < vertexNum; i++) {
             output.apply("\t" + vertexes[i]);
@@ -110,6 +115,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         }
     }
 
+    @Override
     public void depthFirstTraverse() {
         depthFirstTraverse(value -> {
             System.out.print(value);
@@ -118,6 +124,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
     }
 
 
+    @Override
     public void depthFirstTraverse(Function<String, Void> output) {
         for (int i = 0; i < vertexNum; i++) {
             isVisited[i] = false;
@@ -129,6 +136,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         }
     }
 
+    @Override
     public void depthFirstSearch(int vertex, Function<String, Void> output) {
         output.apply(vertexes[vertex] + " ");
         isVisited[vertex] = true;
@@ -139,6 +147,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         }
     }
 
+    @Override
     public void breadthFirstTraverse() {
         breadthFirstTraverse(value -> {
             System.out.print(value);
@@ -147,6 +156,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
     }
 
 
+    @Override
     public void breadthFirstTraverse(Function<String, Void> output) {
         for (int i = 0; i < vertexNum; i++) {
             isVisited[i] = false;
@@ -158,6 +168,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         }
     }
 
+    @Override
     public void breadthFirstSearch(int vertex, Function<String, Void> output) {
         try {
             Queue<Integer> queue = new LinkQueue<>();
@@ -174,6 +185,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         }
     }
 
+    @Override
     public void appendVertex(ElemType elem) throws OverFlowException {
         if (vertexNum == vertexes.length) {
             throw new OverFlowException("空间已满");
@@ -187,6 +199,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         vertexNum++;
     }
 
+    @Override
     public void insertEdge(int vertexA, int vertexB) throws RangeException {
         if (vertexA < 0 || vertexA >= vertexNum || vertexB < 0 || vertexB >= vertexNum || vertexA == vertexB) {
             throw new RangeException("范围错误");
@@ -198,6 +211,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         }
     }
 
+    @Override
     public void deleteVertex(ElemType elem) throws UnderFlowException, NotExistException {
         if (vertexNum == 0) {
             throw new UnderFlowException("空间空");
@@ -224,6 +238,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         }
     }
 
+    @Override
     public void deleteEdge(int vertexA, int vertexB) throws UnderFlowException, RangeException {
         if (vertexNum == 0) {
             throw new UnderFlowException("空间空");
@@ -238,6 +253,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         }
     }
 
+    @Override
     public void setElem(int vertex, ElemType e) throws RangeException {
         if (vertex < 0 || vertex >= vertexNum) {
             throw new RangeException("范围错误");
@@ -246,6 +262,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
     }
 
 
+    @Override
     public void setVisited(int vertex, boolean val) throws RangeException {
         if (vertex < 0 || vertex >= vertexNum) {
             throw new RangeException("范围错误");
@@ -253,14 +270,17 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         isVisited[vertex] = val;
     }
 
+    @Override
     public int getVertexNum() {
         return vertexNum;
     }
 
+    @Override
     public int getEdgeNum() {
         return edgeNum;
     }
 
+    @Override
     public int getIndex(ElemType elem) {
         for (int i = 0; i < vertexNum; i++) {
             if (vertexes[i].equals(elem)) {
@@ -270,6 +290,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         return -1;
     }
 
+    @Override
     public ElemType getElem(int vertex) throws RangeException {
         if (vertex < 0 || vertex >= vertexNum) {
             throw new RangeException("范围错误");
@@ -277,6 +298,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         return vertexes[vertex];
     }
 
+    @Override
     public boolean isVisited(int vertex) throws RangeException {
         if (vertex < 0 || vertex >= vertexNum) {
             throw new RangeException("范围错误");
@@ -284,6 +306,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         return isVisited[vertex];
     }
 
+    @Override
     public int getFirstAdjacencyVertex(int vertex) {
         for (int i = 0; i < vertexNum; i++) {
             if (adjacencyMatrix[vertex][i]) {
@@ -293,6 +316,7 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         return -1;
     }
 
+    @Override
     public int getNextAdjacencyVertex(int vertexA, int vertexB) {
         for (int i = vertexB + 1; i < vertexNum; i++) {
             if (adjacencyMatrix[vertexA][i]) {
@@ -302,24 +326,24 @@ public class AdjacencyMatrixUndirectedGraph<ElemType> {
         return -1;
     }
 
-    public void copy(AdjacencyMatrixUndirectedGraph<ElemType> graph) {
-        if (graph == null) {
-            return;
-        }
-        vertexNum = graph.vertexNum;
-        edgeNum = graph.edgeNum;
-        vertexes = (ElemType[]) new Object[graph.vertexes.length];
-        isVisited = new boolean[graph.vertexes.length];
-        for (int i = 0; i < vertexNum; i++) {
-            vertexes[i] = graph.vertexes[i];
-            isVisited[i] = graph.isVisited[i];
-        }
-        adjacencyMatrix = new boolean[graph.vertexes.length][graph.vertexes.length];
-        for (int i = 0; i < graph.vertexes.length; i++) {
-            adjacencyMatrix[i] = new boolean[graph.vertexes.length];
-        }
-        for (int i = 0; i < vertexNum; i++) {
-            System.arraycopy(graph.adjacencyMatrix[i], 0, adjacencyMatrix[i], 0, vertexNum);
+    @Override
+    public void copy(Graph<ElemType> graph) {
+        if (graph instanceof AdjacencyMatrixUndirectedGraph<ElemType> co) {
+            vertexNum = co.vertexNum;
+            edgeNum = co.edgeNum;
+            vertexes = (ElemType[]) new Object[co.vertexes.length];
+            isVisited = new boolean[co.vertexes.length];
+            for (int i = 0; i < vertexNum; i++) {
+                vertexes[i] = co.vertexes[i];
+                isVisited[i] = co.isVisited[i];
+            }
+            adjacencyMatrix = new boolean[co.vertexes.length][co.vertexes.length];
+            for (int i = 0; i < co.vertexes.length; i++) {
+                adjacencyMatrix[i] = new boolean[co.vertexes.length];
+            }
+            for (int i = 0; i < vertexNum; i++) {
+                System.arraycopy(co.adjacencyMatrix[i], 0, adjacencyMatrix[i], 0, vertexNum);
+            }
         }
     }
 }

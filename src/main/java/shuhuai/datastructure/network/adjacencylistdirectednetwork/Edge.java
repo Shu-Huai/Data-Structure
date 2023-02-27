@@ -1,4 +1,4 @@
-package shuhuai.datastructure.graph.adjacencylistdirectednetwork;
+package shuhuai.datastructure.network.adjacencylistdirectednetwork;
 
 @SuppressWarnings({"unused"})
 public class Edge<WeightType> {

@@ -1,8 +1,8 @@
-package shuhuai.datastructure.graph.adjacencymatrixundirectednextwork;
+package shuhuai.datastructure.network.adjacencymatrixundirectednextwork;
 
 import org.jetbrains.annotations.NotNull;
 
-@SuppressWarnings({"unused","unchecked"})
+@SuppressWarnings({"unused", "unchecked"})
 public class KruskalEdge<ElemType, WeightType extends Comparable<WeightType>> implements Comparable<Object> {
     protected ElemType vertexA;
     protected ElemType vertexB;

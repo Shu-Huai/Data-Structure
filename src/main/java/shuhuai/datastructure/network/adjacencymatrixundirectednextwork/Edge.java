@@ -1,4 +1,4 @@
-package shuhuai.datastructure.graph.adjacencymatrixundirectednextwork;
+package shuhuai.datastructure.network.adjacencymatrixundirectednextwork;
 
 import org.jetbrains.annotations.NotNull;
 
